@@ -8,6 +8,10 @@
         <link rel="icon" href="assets/img/favicon.gif" type="image/x-icon">
         <!-- Bootstrap -->
         <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- owl carousel -->
+        <link rel="stylesheet" href="library/owl-carousel/owl.carousel.css">
+        <link rel="stylesheet" href="library/owl-carousel/owl.theme.css">
+        <link rel="stylesheet" href="library/owl-carousel/owl.transitions.css">
         <!-- Custom CSS -->
         <link href="assets/css/style.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -50,7 +54,6 @@
                                                                 <button class="btn bg-orange" type="button">Go</button>
                                                             </span>
                                                         </div>
-
                                                     </div>
                                                 </form>
                                             </div>
@@ -65,7 +68,7 @@
                     <div class="content">
                         <div id="mainmenu" class="navbar navbar-default " role="navigation">
                             <div class="navbar-header">
-                                <a class="navbar-brand visible-xs" href="#">Brand</a>
+                                <a class="navbar-brand visible-xs" href="#">BRI</a>
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
                                     <span class="sr-only">Toggle navigation</span>
                                     <span class="icon-bar"></span>
@@ -94,7 +97,104 @@
         <div id="main">
             <div class="container">
                 <div class="row">
-                    <img src="userfiles/slides/image-01.jpg" class="img-responsive" />
+                    <div id="main-carousel" class="owl-carousel">
+                        <div><img alt="slider 01" src="userfiles/slides/image-01.jpg"></div>
+                        <div><img alt="slider 02" src="userfiles/slides/image-02.jpg"></div>
+                        <div><img alt="slider 03" src="userfiles/slides/image-03.jpg"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="box">
+                    <div class="content">
+                        <div class="row bg-blue-light">
+                            <div class="pull-left hidden-xs">
+                                <img alt="ibanking-logo" src="assets/img/ibanking-box-button.png" style="display: inline-block; float: left;" />
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="box-combo-links">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Laporan</label>
+                                                <div class="input-group input-group-sm">
+                                                    <select class="form-control">
+                                                        <option value="">Laporan tahunan</option>
+                                                    </select>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn bg-orange" type="button">Go</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Suku bunga</label>
+                                                <div class="input-group input-group-sm">
+                                                    <select class="form-control">
+                                                        <option value="">Kurs harian</option>
+                                                    </select>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn bg-orange" type="button">Go</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">BRI links</label>
+                                                <div class="input-group input-group-sm">
+                                                    <select class="form-control">
+                                                        <option value="">Internet banking</option>
+                                                    </select>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn bg-orange" type="button">Go</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Layanan lainnya</label>
+                                                <div class="input-group input-group-sm">
+                                                    <select class="form-control">
+                                                        <option value="">Unit kerja bri</option>
+                                                    </select>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn bg-orange" type="button">Go</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="content">
+                        <div class="row">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs nav-justified bg-orange" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">WARTA BRI</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">ULASAN EKONOMI</a></li>
+                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">COMPLIANCES</a></li>
+                                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">PENGUMUMAN</a></li>
+                                <li role="presentation"><a href="#ekonomi" aria-controls="ekonomi" role="tab" data-toggle="tab">KABAR EKONOMI</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">...</div>
+                                <div role="tabpanel" class="tab-pane" id="profile">...</div>
+                                <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                                <div role="tabpanel" class="tab-pane" id="settings">...</div>
+                                <div role="tabpanel" class="tab-pane" id="ekonomi">...</div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,5 +254,22 @@
         <script src="library/bootstrap/js/bootstrap.min.js"></script>
         <!-- custom js -->
         <script src="assets/js/main.js"></script>
+        
+        <!-- carousel -->
+        <script src="library/owl-carousel/owl.carousel.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#main-carousel").owlCarousel({
+                    autoPlay : 3000,
+                    stopOnHover : true,
+                    //navigation:true,
+                    paginationSpeed : 1000,
+                    goToFirstSpeed : 2000,
+                    singleItem : true,
+                    autoHeight : true,
+                    transitionStyle:"fade"
+                });
+            });
+        </script>
     </body>
 </html>
