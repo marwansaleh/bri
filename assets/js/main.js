@@ -4,3 +4,7 @@ var MainJS = {
     }
 };
 
+$(document).ready(function (){
+    
+});
+
