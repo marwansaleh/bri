@@ -30,9 +30,12 @@ header .top-page {
     position: relative;
     float: left;
     width: 100%;
-    padding-top: 30px;
+    padding-top: 10px;
 }
-header .top-page .company-logo { float: right !important; }
+header .top-page #company-logo { 
+    max-height: 30px;
+    width: auto;
+}
 
 header .top-page .top-menu-bar { 
     display: block; 
@@ -49,6 +52,7 @@ header .top-page .top-menu-bar ul li {
 header .top-page .top-menu-bar ul li:first-child { margin-left: -5px; }
 header .top-page .top-menu-bar ul li:last-child { margin-right: 20px; }
 header .top-page .top-menu-bar ul li a { color: #fff; line-height: 1; padding-left: 5px; padding-right: 5px; }
+header .top-page .top-menu-bar ul li.active a { color: #F7941E;}
 header .top-page .top-menu-bar ul li a:hover { color:#f7941e;  text-decoration: none; }
 
 #mainmenu.navbar { margin-bottom: 0; min-height: 40px; }
@@ -121,6 +125,11 @@ footer .icon-list img { max-height: 30px; }
 
 
 @media (min-width: 992px){
+    header .top-page {
+        padding-top: 30px;
+    }
+    header .top-page #company-logo { max-height: 60px; }
+    
     #mainmenu .navbar-nav {margin-left: -15px;}
     .navbar-nav>li>a {
         padding-top: 10px;
