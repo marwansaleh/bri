@@ -18,12 +18,14 @@ body {
 /**** CUSTOM BACKGROUND COLOR ***/
 .bg-blue { background: #00529c; color: #fff; }
 .bg-orange { background: #f7941e; color: #fff; }
+.bg-blue-light { background-color: #e3ecf4; color: #000; }
 /**** CUSTOM PANEL COLOR **/
 .panel-default > .panel-heading-blue { background: #00529c; color: #fff; }
 .panel-default > .panel-heading-orange { background: #f7941e; color: #fff; }
 
 /** document style **/
 .container .content { display: block; }
+
 
 header .top-page {
     display: block;
@@ -114,7 +116,16 @@ header .top-page .top-menu-bar ul li a:hover { color:#f7941e;  text-decoration: 
     max-height: 100px;
     overflow-y: hidden;
 }
-footer { padding-top: 10px; }
+#main .box  { display: block; float: left; margin-top: 10px; width: 100%; }
+
+#main .box-combo-links { display: block; width:100%; margin-top: 7px;}
+
+#main .nav-tabs.nav-justified>li>a { border-radius: 0; color: #fff;}
+#main .nav-tabs.nav-justified>li>a:hover { background-color: #ef6422; }
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus { background-color: #ef6422; }
+
+/** footer **/
+footer { margin-top: 20px; }
 footer .icon-list {list-style: none; margin: 0; padding: 0;}
 footer .icon-list li { 
     float: left; 
@@ -123,6 +134,26 @@ footer .icon-list li {
 }
 footer .icon-list img { max-height: 30px; }
 
+
+/* override owl carousel control */
+#main .owl-carousel { margin-bottom: 25px; }
+#main .owl-carousel .owl-controls { margin-top: -40px; }
+#main .owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span{ 
+    opacity: 0.9; 
+    background: #f7941e;
+}
+#main .owl-theme .owl-controls .owl-page span {
+    display: block;
+    width: 30px;
+    height: 10px;
+    margin: 5px 7px;
+    filter: Alpha(Opacity=50);
+    opacity: 0.5;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: #869791;
+}
 
 @media (min-width: 992px){
     header .top-page {
@@ -149,6 +180,11 @@ footer .icon-list img { max-height: 30px; }
         margin-top: -250px;
         max-height: 200px;
     }
+    
+    #main .box-combo-links .form-group { margin-bottom: 0; }
+    
+    /*#main .nav-tabs.nav-justified>li { background-color: }*/
+    
     
     footer .icon-list li {
         float: left;
