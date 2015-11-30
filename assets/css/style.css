@@ -19,6 +19,7 @@ body {
 .bg-blue { background: #00529c; color: #fff; }
 .bg-orange { background: #f7941e; color: #fff; }
 .bg-blue-light { background-color: #e3ecf4; color: #000; }
+.bg-gray { background-color: #7fa8cd; color: #fff;}
 /**** CUSTOM PANEL COLOR **/
 .panel-default > .panel-heading-blue { background: #00529c; color: #fff; }
 .panel-default > .panel-heading-orange { background: #f7941e; color: #fff; }
@@ -121,8 +122,15 @@ header .top-page .top-menu-bar ul li a:hover { color:#f7941e;  text-decoration: 
 #main .box-combo-links { display: block; width:100%; margin-top: 7px;}
 
 #main .nav-tabs.nav-justified>li>a { border-radius: 0; color: #fff;}
-#main .nav-tabs.nav-justified>li>a:hover { background-color: #ef6422; }
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus { background-color: #ef6422; }
+#main .nav-tabs.nav-justified.bg-orange>li>a:hover { background-color: #ef6422; }
+#main .nav-tabs.bg-orange>li.active>a, 
+#main .nav-tabs.bg-orange>li.active>a:hover, 
+#main .nav-tabs.bg-orange>li.active>a:focus { background-color: #ef6422; }
+
+#main .nav-tabs.nav-justified.bg-gray>li>a:hover { background-color: #00529c; }
+#main .nav-tabs.bg-gray>li.active>a, 
+#main .nav-tabs.bg-gray>li.active>a:hover, 
+#main .nav-tabs.bg-gray>li.active>a:focus { background-color: #00529c; }
 
 #main .list-group-item {border-radius: 0;}
 
