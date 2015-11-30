@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="library/owl-carousel/owl.carousel.css">
         <link rel="stylesheet" href="library/owl-carousel/owl.theme.css">
         <link rel="stylesheet" href="library/owl-carousel/owl.transitions.css">
+        <!-- slick slider -->
+        <link rel="stylesheet" type="text/css" href="library/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="library/slick/slick-theme.css"/>
         <!-- Custom CSS -->
         <link href="assets/css/style.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -20,6 +23,12 @@
           <script src="library/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="library/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        
+        <style>
+            .slick-slider { margin-bottom: 0; }
+            .slick-slider .slick-prev { left: 25px; z-index: 1000; }
+            .slick-slider .slick-next { right: 25px; }
+        </style>
     </head>
     <body>
         <header>
@@ -108,8 +117,17 @@
                 <div class="box">
                     <div class="content">
                         <div class="row bg-blue-light">
-                            <div class="pull-left hidden-xs">
-                                <img alt="ibanking-logo" src="assets/img/ibanking-box-button.png" style="display: inline-block; float: left;" />
+                            <div class="col-sm-3">
+                                <div class="row bg-blue">
+                                    <div class="ibanking-box">
+                                        <div class="pull-left">
+                                            <img src="assets/img/ibanking.png" />
+                                        </div>
+                                        <div class="pull-right">
+                                            <a class="btn bg-orange" href="#">Login</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-9">
                                 <div class="box-combo-links">
@@ -222,6 +240,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="box">
+                    <div class="row bg-blue-light">
+                        <div class="content">
+                            <div class="row">
+                                <div class="myslick">
+                                    <div class="col-sm-3">
+                                        <img src="http://placehold.it/300x250?text=image+01" class="img-responsive" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img src="http://placehold.it/300x250?text=image+02" class="img-responsive" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img src="http://placehold.it/300x250?text=image+03" class="img-responsive" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img src="http://placehold.it/300x250?text=image+04" class="img-responsive" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img src="http://placehold.it/300x250?text=image+05" class="img-responsive" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <footer>
@@ -283,6 +326,8 @@
         
         <!-- carousel -->
         <script src="library/owl-carousel/owl.carousel.min.js"></script>
+        <!-- slick slider -->
+        <script type="text/javascript" src="library/slick/slick.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#main-carousel").owlCarousel({
@@ -294,6 +339,14 @@
                     singleItem : true,
                     autoHeight : true,
                     transitionStyle:"fade"
+                });
+                $('.myslick').slick({
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    dots: false,
+                    //asNavFor: '.slider-for',
+                    //centerMode: true,
+                    focusOnSelect: true
                 });
             });
         </script>
