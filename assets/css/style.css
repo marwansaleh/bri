@@ -126,6 +126,15 @@ header .top-page .top-menu-bar ul li a:hover { color:#f7941e;  text-decoration: 
 
 #main .list-group-item {border-radius: 0;}
 
+#main .ibanking-box{
+    width: 100%;
+    display: block;
+    float: left;
+    padding: 10px 15px 10px 15px;
+}
+#main .ibanking-box img { display: block; float: left; }
+#main .ibanking-box .btn { margin-top: 7px; font-weight: bold; padding-left: 20px; padding-right: 20px; }
+
 /** footer **/
 footer { margin-top: 20px; }
 footer .icon-list {list-style: none; margin: 0; padding: 0;}
