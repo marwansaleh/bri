@@ -1,8 +1,8 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+        <!-- load jquery -->
+        <script src="<?php echo get_lib_url('jquery/jquery-1.11.3.min.js'); ?>"></script>
+        <!-- include all plugins -->
+        <script src="<?php echo get_lib_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
+        <!-- custom js -->
+        <script src="<?php echo get_asset_url('js/main.js'); ?>"></script>
+    </body>
+</html>
