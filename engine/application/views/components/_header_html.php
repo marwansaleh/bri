@@ -17,3 +17,4 @@
           <script src="<?php echo get_lib_url('respond/1.4.2/respond.min.js'); ?>"></script>
         <![endif]-->
     </head>
+    <body>
