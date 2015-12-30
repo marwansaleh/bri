@@ -10,7 +10,9 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
     }
     
-    
+    function get_menu(){
+        return array();
+    }
 }
 
 /**
