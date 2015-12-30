@@ -1,8 +1,9 @@
 <?php
+$this->load->view('components/_header_html');
+$this->load->view('components/_body_html');
+$this->load->view('components/_footer_html');
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/*
+ * Filename: _layout_main.php
+ * Location: application/views/_layout_main.php
  */
-
