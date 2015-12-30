@@ -1,8 +1,19 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><?php echo isset($meta_title)?$meta_title : 'PT. Bank Rakyat Indonesia, Tbk.'; ?></title>
+        <link rel="icon" href="<?php echo get_asset_url('img/favicon.gif'); ?>" type="image/x-icon">
+        <!-- Bootstrap -->
+        <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="assets/css/style.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="library/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="library/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
