@@ -1,4 +1,6 @@
 <?php
+$this->load->view('components/_body_header');
+
 if (isset($subview)){
     $this->load->view($subview);
 } 
