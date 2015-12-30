@@ -5,11 +5,15 @@
  *
  * @author marwansaleh 5:42:25 PM
  */
-class MY_Controller {
-    //put your code here
+class MY_Controller extends CI_Controller {
+    function __construct() {
+        parent::__construct();
+    }
+    
+    
 }
 
 /**
  * Filename : MY_Controller.php
- * Location : /MY_Controller.php
+ * Location : applications/core/MY_Controller.php
  */
