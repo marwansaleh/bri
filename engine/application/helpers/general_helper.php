@@ -22,6 +22,25 @@ if (!function_exists('get_lib_url')){
     }
 }
 
+if (!function_exists('get_userfiles_base_path')){
+    function get_userfiles_base_path(){
+        return config_item('userfiles_base_path');
+    }
+}
+
+if (!function_exists('get_userfiles_base_url')){
+    function get_userfiles_base_url(){
+        return config_item('userfiles_base_url');
+    }
+}
+
+if (!function_exists('get_userfile')){
+    function get_userfile($filename){
+        $base_userfile = get_userfiles_base_url();
+        return $base_userfile . $filename;
+    }
+}
+
 /*
  * Filename: general_helper.php
  * Location: application/helpers/general_helper.php
