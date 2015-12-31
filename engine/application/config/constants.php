@@ -90,3 +90,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('CT_LOG_TYPE_FILE', 'file');
 define('CT_LOG_TYPE_DB', 'database');
 define('CT_LOG_TYPE_DUAL', 'dual');
+
+//CONSTANT MAINMENU TYPE
+define('CT_MAINMENU_HOME', 1);
+define('CT_MAINMENU_CORPORATE', 2);
