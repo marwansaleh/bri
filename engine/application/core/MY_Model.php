@@ -78,7 +78,7 @@ class MY_Model extends CI_Model {
             $method = 'row';
         }
         
-        if (!count($this->db->ar_orderby)) {
+        if (!count($this->db->order_by)) {
             $this->db->order_by($this->_order_by);            
         }
         
@@ -132,7 +132,7 @@ class MY_Model extends CI_Model {
         if ($where)
             $this->db->where($where);
         
-        if (!count($this->db->ar_orderby)) {
+        if (!count($this->db->order_by)) {
             $this->db->order_by($this->_order_by);            
         }
         if ($limit > 0){
@@ -147,7 +147,7 @@ class MY_Model extends CI_Model {
         if ($where){
             $this->db->where($where);
         }
-        if (!count($this->db->ar_orderby)) {
+        if (!count($this->db->order_by)) {
             $this->db->order_by($this->_order_by);            
         }
         return $this->get(NULL, $single);
@@ -167,8 +167,12 @@ class MY_Model extends CI_Model {
         if ($id == NULL || $id == 0) {
             !isset($data[$this->_primary_key]) || $data[$this->_primary_key] = NULL;
             $this->db->set($data);
-            $this->db->insert($this->_table_name);
-            $id = $this->db->insert_id();
+            if ($this->db->insert($this->_table_name)){
+                $id = $this->db->insert_id();
+            }else{
+                $this->_last_message = $this->db->_error_message();
+                return FALSE;
+            }
         }
         // Update
         else {
@@ -176,9 +180,12 @@ class MY_Model extends CI_Model {
             $id = $filter($id);
             $this->db->set($data);
             $this->db->where($this->_primary_key, $id);
-            $this->db->update($this->_table_name);            
+            if (!$this->db->update($this->_table_name)){
+                $this->_last_message = $this->db->_error_message();
+                return FALSE;
+            }
         }
-        $this->_last_message = $this->db->_error_message();
+        
         
         return $id;
     }
@@ -216,21 +223,22 @@ class MY_Model extends CI_Model {
     public function delete($id){
         $this->db->where($this->_primary_key, $id);
         $this->db->limit(1);
-        if ($this->db->delete($this->_table_name)){
-            return TRUE;
-        }else{
+        if (!$this->db->delete($this->_table_name)){
             $this->_last_message = $this->db->_error_message();
             return FALSE;
+        }else{
+            return TRUE;
         }
     }
     
     public function delete_where($where){
         $this->db->where($where);
-        if ($this->db->delete($this->_table_name)){
-            return TRUE;
-        }else{
+        if (!$this->db->delete($this->_table_name)){
             $this->_last_message = $this->db->_error_message();
             return FALSE;
+        }else{
+            
+            return TRUE;
         }
     }
     
