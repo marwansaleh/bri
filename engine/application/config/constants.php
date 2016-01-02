@@ -92,5 +92,5 @@ define('CT_LOG_TYPE_DB', 'database');
 define('CT_LOG_TYPE_DUAL', 'dual');
 
 //CONSTANT MAINMENU TYPE
-define('CT_MAINMENU_HOME', 1);
-define('CT_MAINMENU_CORPORATE', 2);
+define('CT_MAINMENU_HOME', 0);
+define('CT_MAINMENU_CORPORATE', 1);
