@@ -11,6 +11,8 @@ class MY_Controller extends CI_Controller {
     private $_cookie_visitor = 'visitor';
     private $_log_type = 'file';
     
+    protected $data = array();
+            
     function __construct() {
         parent::__construct();
     }
@@ -82,6 +84,16 @@ class MY_Controller extends CI_Controller {
         return $this->_log_type;
     }
     
+    protected function get_menu($type=CT_MAINMENU_CORPORATE){
+        $menu = array();
+        switch ($type){
+            case CT_MAINMENU_HOME:
+                $menu = array();
+        }
+        
+        return $menu;
+    }
+    
     private function _create_log_infile($log_data){
         
     }
@@ -109,7 +121,11 @@ class MY_FrontController extends MY_Controller {
         parent::__construct();
     }
     
-    function get_client_menu(){
+    function get_home_menu(){
+        
+    }
+    
+    function get_corporate_menu(){
         return array();
     }
 }
