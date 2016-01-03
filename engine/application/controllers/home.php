@@ -8,7 +8,8 @@
 class Home extends MY_FrontController {
     
     function index(){
-        $this->data['mainmenu'] = $this->get_menu(CT_MAINMENU_HOME, FALSE, CT_LANG_INDONESIA);
+        //var_dump($this->get_language());
+        $this->data['mainmenu'] = $this->get_menu(CT_MAINMENU_HOME, FALSE, $this->get_language());
         $this->data['subview'] = 'home/index';
         $this->load->view('_layout_main', $this->data);
     }
