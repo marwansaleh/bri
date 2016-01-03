@@ -4,10 +4,10 @@
 #php_value max_input_time 6000
 
 <IfModule mod_rewrite.c>
-    #Options +FollowSymLinks
+    Options +FollowSymLinks
     RewriteEngine on
     #RewriteBase /
-    #RewriteCond $1 !^(index\.php|google89147be2b2c2adc4.html|images|stylesheets|scripts|robots\.txt|server-status)
+    RewriteCond $1 !^(index\.php|google89147be2b2c2adc4.html|images|stylesheets|scripts|robots\.txt|server-status)
     #Send request via index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

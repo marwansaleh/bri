@@ -139,12 +139,13 @@ switch (ENVIRONMENT) {
         case 'testing':
             $assign_to_config['base_url'] = 'http://www.bri.co.id/'; break;
         default:
-            $assign_to_config['base_url'] = 'http://localhost:8000/';
-            $assign_to_config['userfiles_base_url'] = 'http://localhost:8000/userfiles/';
+            $assign_to_config['base_url'] = 'http://bri.dev/';
+            $assign_to_config['userfiles_base_url'] = 'http://bri.dev/userfiles/';
             $assign_to_config['userfiles_base_path'] = 'userfiles/';
             $assign_to_config['assets_path'] = 'assets/';
             $assign_to_config['lib_path'] = 'library/';
     }
+    $assign_to_config['cms_path'] = 'cms/';
 
 
 // --------------------------------------------------------------------
