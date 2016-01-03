@@ -53,8 +53,18 @@ class Migration_add_menu extends CI_Migration {
                 'default' => CT_MAINMENU_CORPORATE
             ),
             'sort'   => array(
-                'type'  => 'iNT',
+                'type'  => 'INT',
                 'constraint' => 9,
+                'default' => 0
+            ),
+            'created'   => array(
+                'type'  => 'INT',
+                'constraint' => 11,
+                'default' => 0
+            ),
+            'modified'   => array(
+                'type'  => 'INT',
+                'constraint' => 11,
                 'default' => 0
             )
         ));
@@ -71,6 +81,7 @@ class Migration_add_menu extends CI_Migration {
         //Need seeding ?
         $this->_seed(array(
             array(
+                'id'            => 1,
                 'parent_id'     => 0,
                 'caption_id'    => 'Situs Perusahaan',
                 'caption_en'    => 'Corporate Website',
@@ -79,8 +90,11 @@ class Migration_add_menu extends CI_Migration {
                 'href'          => 'corporate',
                 'category'      => CT_MAINMENU_HOME,
                 'sort'          => 0,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
+                'id'            => 2,
                 'parent_id'     => 0,
                 'caption_id'    => 'Karir',
                 'caption_en'    => 'Career',
@@ -88,9 +102,12 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Career',
                 'href'          => 'http://karir.bri.co.id',
                 'category'      => CT_MAINMENU_HOME,
-                'sort'          => 1
+                'sort'          => 1,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
+                'id'            => 3,
                 'parent_id'     => 0,
                 'caption_id'    => 'Hubungan Investor',
                 'caption_en'    => 'Investor Relationship',
@@ -98,9 +115,12 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Investor relationship',
                 'href'          => 'http://ib.bri.co.id',
                 'category'      => CT_MAINMENU_HOME,
-                'sort'          => 2
+                'sort'          => 2,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
+                'id'            => 4,
                 'parent_id'     => 0,
                 'caption_id'    => 'Anak Perusahaan',
                 'caption_en'    => 'Subsidiary',
@@ -108,9 +128,12 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Subsidiary',
                 'href'          => 'http://karir.bri.co.id',
                 'category'      => CT_MAINMENU_HOME,
-                'sort'          => 3
+                'sort'          => 3,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
+                'id'            => 5,
                 'parent_id'     => 0,
                 'caption_id'    => 'CSR BRI',
                 'caption_en'    => 'CSR BRI',
@@ -118,9 +141,12 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'CSR RI',
                 'href'          => 'http://karir.bri.co.id',
                 'category'      => CT_MAINMENU_HOME,
-                'sort'          => 4
+                'sort'          => 4,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
+                'id'            => 6,
                 'parent_id'     => 0,
                 'caption_id'    => 'Tentang Kami',
                 'caption_en'    => 'About Us',
@@ -128,7 +154,22 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'About us',
                 'href'          => 'corporate/aboutus',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 0
+                'sort'          => 0,
+                'created'       => time(),
+                'modified'      => time()
+            ),
+            array(
+                'id'            => 7,
+                'parent_id'     => 6,
+                'caption_id'    => 'Sejarah BRI',
+                'caption_en'    => 'BRI History',
+                'title_id'      => 'Sejarah BRI',
+                'title_en'      => 'BRI history',
+                'href'          => 'corporate/aboutus/history',
+                'category'      => CT_MAINMENU_CORPORATE,
+                'sort'          => 0,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -138,7 +179,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Savings',
                 'href'          => 'corporate/saving',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 1
+                'sort'          => 1,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -148,7 +191,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Loans',
                 'href'          => 'corporate/loans',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 2
+                'sort'          => 2,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -158,7 +203,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'International',
                 'href'          => 'corporate/internasional',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 3
+                'sort'          => 3,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -168,7 +215,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Bank Services',
                 'href'          => 'corporate/bankservice',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 4
+                'sort'          => 4,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -178,7 +227,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Consumer Banking',
                 'href'          => 'corporate/consumerbanking',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 5
+                'sort'          => 5,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -188,7 +239,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Investment Banking',
                 'href'          => 'corporate/investmentbanking',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 6
+                'sort'          => 6,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -198,7 +251,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Priority Banking',
                 'href'          => 'corporate/prioritybanking',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 7
+                'sort'          => 7,
+                'created'       => time(),
+                'modified'      => time()
             ),
             array(
                 'parent_id'     => 0,
@@ -208,7 +263,9 @@ class Migration_add_menu extends CI_Migration {
                 'title_en'      => 'Auction Information',
                 'href'          => 'corporate/auctioninfo',
                 'category'      => CT_MAINMENU_CORPORATE,
-                'sort'          => 8
+                'sort'          => 8,
+                'created'       => time(),
+                'modified'      => time()
             )
         ));
     }

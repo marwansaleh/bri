@@ -55,11 +55,9 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            <li><a href="/corporate.html">SITUS PERUSAHAAN</a></li>
-                            <li><a href="#">KARIR</a></li>
-                            <li><a href="#">HUBUNGAN INVESTOR</a></li>
-                            <li><a href="#">ANAK PERUSAHAAN</a></li>
-                            <li><a href="#">CSR BRI</a></li>
+                            <?php foreach ($mainmenu as $menuitem): ?>
+                            <li><a href="<?php echo $menuitem->href; ?>"><?php echo strtoupper($menuitem->caption); ?></a></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>

@@ -1,3 +1,8 @@
+<style>
+    .slick-slider { margin-bottom: 0; }
+    .slick-slider .slick-prev { left: 25px; z-index: 1000; }
+    .slick-slider .slick-next { right: 25px; }
+</style>
 <div id="main">
     <div class="container">
         <div class="row">
@@ -162,3 +167,26 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#main-carousel").owlCarousel({
+            autoPlay : 3000,
+            stopOnHover : true,
+            //navigation:true,
+            paginationSpeed : 1000,
+            goToFirstSpeed : 2000,
+            singleItem : true,
+            autoHeight : true,
+            transitionStyle:"fade"
+        });
+        $('.myslick').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: false,
+            //asNavFor: '.slider-for',
+            //centerMode: true,
+            focusOnSelect: true
+        });
+    });
+</script>

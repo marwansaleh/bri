@@ -84,14 +84,48 @@ class MY_Controller extends CI_Controller {
         return $this->_log_type;
     }
     
-    protected function get_menu($type=CT_MAINMENU_CORPORATE){
+    protected function get_menu($category=CT_MAINMENU_CORPORATE, $deep=FALSE, $language=CT_LANG_INDONESIA){
+        if (!isset($this->menu_m)){
+            $this->load->model('menu_m');
+        }
         $menu = array();
-        switch ($type){
-            case CT_MAINMENU_HOME:
-                $menu = array();
+        
+        //load menus
+        $condition = array('category' => $category);
+        if (!$deep){
+            $condition['parent_id'] = 0;
+        }
+        $result = $this->menu_m->get_by($condition);
+        if ($result){
+            $menu_array = array('parents' => array(),'items' => array());
+            foreach ($result as $menu_item){
+                $menu_array['parents'][$menu_item->parent_id][] = $menu_item->id;
+                $menu_array['items'][$menu_item->id] = $menu_item;
+            }
+            
+            //iterate menu array to construct menus hierarchy
+            foreach ($menu_array['items'] as $item){
+                $menu[] = $this->_menu_item_child_recursion($item, $menu_array);
+            }
         }
         
         return $menu;
+    }
+    
+    private function _menu_item_child_recursion($menuitem, $basedata, $language=CT_LANG_INDONESIA){
+        $menuitem->caption = $language==CT_LANG_INDONESIA ? $menuitem->caption_id : $menuitem->caption_en;
+        $menuitem->title = $language==CT_LANG_INDONESIA ? $menuitem->title_id : $menuitem->title_en;
+        if (isset($basedata['parents'][$menuitem->id])){
+            $menuitem->children = array();
+            foreach ($basedata['parents'][$menuitem->id] as $menuid){
+                $this->_menu_item_child_recursion($basedata['items'][$menuid], $basedata);
+                $menuitem->children [] = $basedata['items'][$menuid];
+            }
+        }else{
+            $menuitem->children = NULL;
+        }
+        
+        return $menuitem;
     }
     
     private function _create_log_infile($log_data){

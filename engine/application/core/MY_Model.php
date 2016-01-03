@@ -78,7 +78,7 @@ class MY_Model extends CI_Model {
             $method = 'row';
         }
         
-        if (!count($this->db->order_by)) {
+        if (!count($this->db->get_orderby())) {
             $this->db->order_by($this->_order_by);            
         }
         
@@ -110,7 +110,7 @@ class MY_Model extends CI_Model {
     
     public function get_select_where($fields = '*', $where=NULL, $single= FALSE){
         $this->db->select($fields);
-        if ($where) $this->db->where($where);
+        if ($where) { $this->db->where($where); }
         
         return $this->get(NULL, $single);
     }
@@ -118,8 +118,7 @@ class MY_Model extends CI_Model {
     public function get_count($where=NULL){
         $this->db->select('count(*) as found');
         
-        if ($where)
-            $this->db->where($where);
+        if ($where){ $this->db->where($where); }
         
         $row = $this->db->get($this->_table_name)->row();
         
@@ -132,7 +131,7 @@ class MY_Model extends CI_Model {
         if ($where)
             $this->db->where($where);
         
-        if (!count($this->db->order_by)) {
+        if (!count($this->db->get_orderby())) {
             $this->db->order_by($this->_order_by);            
         }
         if ($limit > 0){
@@ -147,7 +146,7 @@ class MY_Model extends CI_Model {
         if ($where){
             $this->db->where($where);
         }
-        if (!count($this->db->order_by)) {
+        if (!count($this->db->get_orderby())) {
             $this->db->order_by($this->_order_by);            
         }
         return $this->get(NULL, $single);

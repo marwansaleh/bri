@@ -7,7 +7,13 @@
  */
 class Corporate extends MY_FrontController{
     
+    function __construct() {
+        parent::__construct();
+        
+        $this->data['mainmenu'] = $this->get_menu(CT_MAINMENU_CORPORATE, FALSE, CT_LANG_INDONESIA);
+    }
     function index(){
+        
         $this->data['subview'] = 'corporate/index';
         $this->load->view('_layout_main', $this->data);
     }
