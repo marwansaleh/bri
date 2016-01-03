@@ -353,3 +353,16 @@ DEBUG - 2016-01-03 21:01:36 --> UTF-8 Support Enabled
 DEBUG - 2016-01-03 21:01:36 --> No URI present. Default controller set.
 DEBUG - 2016-01-03 21:01:36 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2016-01-03 21:01:36 --> Total execution time: 0.0143
+DEBUG - 2016-01-03 21:05:38 --> UTF-8 Support Enabled
+DEBUG - 2016-01-03 21:05:38 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2016-01-03 21:05:38 --> Total execution time: 0.0208
+DEBUG - 2016-01-03 21:21:59 --> UTF-8 Support Enabled
+DEBUG - 2016-01-03 21:21:59 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2016-01-03 21:21:59 --> UTF-8 Support Enabled
+DEBUG - 2016-01-03 21:21:59 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2016-01-03 21:21:59 --> Total execution time: 0.0131
+DEBUG - 2016-01-03 21:22:58 --> UTF-8 Support Enabled
+DEBUG - 2016-01-03 21:22:58 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2016-01-03 21:22:58 --> UTF-8 Support Enabled
+DEBUG - 2016-01-03 21:22:58 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2016-01-03 21:22:58 --> Total execution time: 0.0143

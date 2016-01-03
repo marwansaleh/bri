@@ -1,6 +1,6 @@
 <?php
 if (!function_exists('create_alert_box')){
-    function create_alert_box($alert_text, $alert_type=NULL, $alert_title=NULL, $autohide=TRUE){
+    function create_alert_box($alert_text, $alert_type=NULL, $alert_title=NULL, $autohide=TRUE, $secs=2500){
         $type_labels = array(
             'default' => 'Information', 'info'=>'Information', 'success'=>'Successfull', 
             'warning'=>'Warning', 'danger'=>'Danger', 'error'=>'Error'
@@ -20,7 +20,7 @@ if (!function_exists('create_alert_box')){
         
         //add js to hide automatically
         if ($autohide){
-            $s.= PHP_EOL . '<script>setTimeout(function(){$(".alert-dismissible").fadeOut("slow");},2500);</script>';
+            $s.= PHP_EOL . '<script>setTimeout(function(){$(".alert-dismissible").fadeOut("slow");},'.$secs.');</script>';
         }
         
         return $s;

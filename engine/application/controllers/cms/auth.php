@@ -13,29 +13,19 @@ class Auth extends MY_FrontController{
     }
     
     function index(){
-        if (get_cookie($this->_cookie_remember['remember'])){
-            $remember  = new stdClass();
-            $remember->username= get_cookie($this->_cookie_remember['username']);
-            $remember->password = get_cookie($this->_cookie_remember['password']);
-            
-            $this->data['remember'] = $remember;
+        //get remember cookies if exists
+        if ($this->_get_remember_cookies()){
+            $this->data['remember'] = $this->_get_remember_cookies();
         }
-        
+        //create captcha as security feature
         $captcha = $this->_create_captcha();
-        $data_captcha = array(
-            'captcha_time'  => $captcha['time'],
-            'ip_address'    => $this->input->ip_address(),
-            'word'          => $captcha['word']
-        );
         $this->session->set_userdata('captcha', $captcha);
-        $query = $this->db->insert_string('captcha', $data_captcha);
-        $this->db->query($query);
+        $this->data['captcha'] = $captcha;
         
         if ($this->session->flashdata('login_error')){
-            $this->data['message_error'] = create_alert_box($this->session->flashdata('login_error'), 'error', 'Login error!!', TRUE);
+            $this->data['message_error'] = create_alert_box($this->session->flashdata('login_error'), 'error', 'Login error!!', TRUE, 4000);
         }
         
-        $this->data['captcha'] = $captcha;
         //get previous submitted data if any
         $this->data['submitted'] = $this->session->flashdata('submitted');
         //set submit form action url
@@ -52,7 +42,11 @@ class Auth extends MY_FrontController{
             unlink($captcha_file);
         }
         //get posting data
-        $this->session->set_flashdata('submitted', array_submits('username,password', $this->input->post()));
+        $postdata = array_submits('username,password,remember', $this->input->post());
+        $this->session->set_flashdata('submitted', $postdata);
+        
+        //update cookie remember option
+        $this->_set_remember_cookies($postdata);
         
         //check captcha
         if (!$this->_check_captcha($this->input->post('captcha'))){
@@ -90,7 +84,20 @@ class Auth extends MY_FrontController{
             )
         );
         $captcha = create_captcha($vals);
+        $this->_save_captcha($captcha);
+        
         return $captcha;
+    }
+    
+    private function _save_captcha($captcha){
+        $data_captcha = array(
+            'captcha_time'  => $captcha['time'],
+            'ip_address'    => $this->input->ip_address(),
+            'word'          => $captcha['word']
+        );
+        
+        $query = $this->db->insert_string('captcha', $data_captcha);
+        $this->db->query($query);
     }
     
     private function _check_captcha($word){
@@ -110,6 +117,29 @@ class Auth extends MY_FrontController{
         }
         
         return TRUE;
+    }
+    
+    private function _set_remember_cookies($postdata){
+        if ($postdata['remember']){
+            set_cookie($this->_cookie_remember['remember'], $postdata['remember']);
+            set_cookie($this->_cookie_remember['username'], $postdata['username']);
+            set_cookie($this->_cookie_remember['password'], $postdata['password']);
+        }else{
+            delete_cookie($this->_cookie_remember['remember']);
+            delete_cookie($this->_cookie_remember['username']);
+            delete_cookie($this->_cookie_remember['password']);
+        }
+    }
+    
+    private function _get_remember_cookies(){
+        if (get_cookie($this->_cookie_remember['remember'])){
+            $remember  = new stdClass();
+            $remember->username= get_cookie($this->_cookie_remember['username']);
+            $remember->password = get_cookie($this->_cookie_remember['password']);
+            
+            return $remember;
+        }
+        return NULL;
     }
 }
 

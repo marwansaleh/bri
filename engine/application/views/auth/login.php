@@ -25,7 +25,7 @@
                 </div>
             </div>
             <label class="checkbox">
-                <input type="checkbox" name="remember" value="remember-me" <?php echo isset($remember)?'checked="checked"':''; ?>> Remember me
+                <input type="checkbox" name="remember" value="remember-me" <?php echo $submitted ? $submitted['password'] : (isset($remember)?'checked="checked"':''); ?>> Remember me
                 
             </label>
             <button id="btn-login" class="btn btn-primary btn-lg btn-block" data-loading-text="loading..." type="submit">Login</button>
