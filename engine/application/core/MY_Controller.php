@@ -15,6 +15,25 @@ class MY_Controller extends CI_Controller {
             
     function __construct() {
         parent::__construct();
+        
+        //language determination
+        $language = $this->get_language();
+        $this->data['language'] = $language;
+        $this->lang->load('general', $language);
+    }
+    
+    protected function get_language(){
+        $language = $this->session->userdata('language');
+        if (!$language){
+            $language = CT_LANG_INDONESIA;
+            $this->session->set_userdata('language', $language);
+        }
+        
+        return $language;
+    }
+    
+    protected function set_language($language){
+        $this->session->set_userdata('language', $language);
     }
     
     protected function create_visitor_log(){
@@ -105,7 +124,7 @@ class MY_Controller extends CI_Controller {
             
             //iterate menu array to construct menus hierarchy
             foreach ($menu_array['items'] as $item){
-                $menu[] = $this->_menu_item_child_recursion($item, $menu_array);
+                $menu[] = $this->_menu_item_child_recursion($item, $menu_array, $language);
             }
         }
         
@@ -118,7 +137,7 @@ class MY_Controller extends CI_Controller {
         if (isset($basedata['parents'][$menuitem->id])){
             $menuitem->children = array();
             foreach ($basedata['parents'][$menuitem->id] as $menuid){
-                $this->_menu_item_child_recursion($basedata['items'][$menuid], $basedata);
+                $this->_menu_item_child_recursion($basedata['items'][$menuid], $basedata, $language);
                 $menuitem->children [] = $basedata['items'][$menuid];
             }
         }else{

@@ -1,38 +1,36 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_ci_session
+ * Description of Migration_add_captcha
  *
  * @author marwansaleh
  */
-class Migration_add_ci_session extends CI_Migration {
-    private $_table_name = 'ci_sessions';
-    private $_primary_key = 'id';
-    private $_index_keys = array('timestamp');
+class Migration_add_captcha extends CI_Migration {
+    private $_table_name = 'captcha';
+    private $_primary_key = 'captcha_id';
+    private $_index_keys = array('word');
     private $_attributes = array('ENGINE' => 'InnoDB');
     
     public function up(){
         $this->dbforge->add_field(array(
             $this->_primary_key    => array (
-                'type'  => 'VARCHAR',
-                'constraint' => 40,
-                'NULL' => FALSE
-            ),
-            'ip_address'    => array(
-                'type' => 'VARCHAR',
-                'constraint' => 45,
-                'NULL' => FALSE
-            ),
-            'timestamp' => array(
-                'type'  => 'INT',
-                'constraint' => 10,
+                'type'  => 'BIGINT',
+                'constraint' => 13,
                 'unsigned' => TRUE,
-                'default' => 0,
-                'NULL' => FALSE
+                'auto_increment' => TRUE
             ),
-            'data' => array(
-                'type' => 'BLOB',
-                'NULL' => FALSE
+            'captcha_time'    => array(
+                'type' => 'INT',
+                'constraint' => 10,
+                'unsigned' => TRUE
+            ),
+            'ip_address' => array(
+                'type'  => 'VARCHAR',
+                'constraint' => 45
+            ),
+            'word' => array(
+                'type'  => 'VARCHAR',
+                'constraint' => 20
             )
         ));
         
@@ -53,6 +51,6 @@ class Migration_add_ci_session extends CI_Migration {
 }
 
 /*
- * filename : 001_add_ci_session.php
- * location : /application/migrations/001_add_ci_session.php
+ * filename : 005_add_captcha.php
+ * location : /application/migrations/005_add_captcha.php
  */
