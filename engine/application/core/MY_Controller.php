@@ -43,7 +43,8 @@ class MY_Controller extends CI_Controller {
             $cookie = array(
                 'name'   => $this->_cookie_visitor,
                 'value'  => md5(time() . $this->input->ip_address()),
-                'expire' => 8640 * 365
+                'expire' => 8640 * 365,
+                'prefix' => config_item('cookie_prefix')
             );
             $this->input->set_cookie($cookie);
             

@@ -16,6 +16,7 @@ class Auth extends MY_FrontController{
         //get remember cookies if exists
         if ($this->_get_remember_cookies()){
             $this->data['remember'] = $this->_get_remember_cookies();
+            //var_dump($this->data['remember']);exit;
         }
         //create captcha as security feature
         $captcha = $this->_create_captcha();
@@ -56,6 +57,8 @@ class Auth extends MY_FrontController{
             if ($login_result){
                 redirect(config_item('cms_path') .'dashboard');
                 exit;
+            }else{
+                $this->session->set_flashdata('login_error', 'Username dan password tidak sesuai.');
             }
         }
         
@@ -121,9 +124,16 @@ class Auth extends MY_FrontController{
     
     private function _set_remember_cookies($postdata){
         if ($postdata['remember']){
-            set_cookie($this->_cookie_remember['remember'], $postdata['remember']);
-            set_cookie($this->_cookie_remember['username'], $postdata['username']);
-            set_cookie($this->_cookie_remember['password'], $postdata['password']);
+            foreach ($this->_cookie_remember as $key => $cookie_name){
+                $cookie = array(
+                    'name'   => $cookie_name,
+                    'value'  => $postdata[$key],
+                    'expire' => 8640 * 365,
+                    'prefix' => config_item('cookie_prefix')
+                );
+                
+                $this->input->set_cookie($cookie);
+            }
         }else{
             delete_cookie($this->_cookie_remember['remember']);
             delete_cookie($this->_cookie_remember['username']);
@@ -134,6 +144,7 @@ class Auth extends MY_FrontController{
     private function _get_remember_cookies(){
         if (get_cookie($this->_cookie_remember['remember'])){
             $remember  = new stdClass();
+            $remember->remember = get_cookie($this->_cookie_remember['remember']);
             $remember->username= get_cookie($this->_cookie_remember['username']);
             $remember->password = get_cookie($this->_cookie_remember['password']);
             
