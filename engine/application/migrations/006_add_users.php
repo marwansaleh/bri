@@ -52,6 +52,11 @@ class Migration_add_users extends CI_Migration {
                 'constraint' => 254,
                 'null' => TRUE
             ),
+            'session_id' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 40,
+                'null' => TRUE
+            ),
             'created'   => array(
                 'type'  => 'INT',
                 'constraint' => 11,
