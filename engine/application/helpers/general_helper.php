@@ -1,4 +1,38 @@
 <?php
+if (!function_exists('breadcumb')){
+    function breadcrumb($pages, $showServerTime=FALSE){
+        $str = '<ol class="breadcrumb">';
+        
+        if (is_array($pages)){
+            if ($showServerTime){
+                $new_bc = array (array('title'=> date('D, dMY H:i:s')));
+                array_splice($pages, 0,0, $new_bc);
+            }
+            foreach ($pages as $page){
+                $active = (isset($page['active'])&&$page['active']==TRUE);
+                $str.= '<li';
+                if ($active)
+                    $str.= ' class="active"';
+                        
+                $str.= '>';
+                if (isset($page['link']))
+                    $str.= '<a href="'.$page['link'].'">'. $page['title'].'</a>';
+                else
+                    $str.= $page['title'];
+                
+                
+                $str.= '</li>';
+            }
+        }
+        else
+        {
+            $str.= '<li>'.$page.'</li>';
+        }
+        $str.= '</ol>';
+        return $str;
+    }
+}
+
 if (!function_exists('create_alert_box')){
     function create_alert_box($alert_text, $alert_type=NULL, $alert_title=NULL, $autohide=TRUE, $secs=2500){
         $type_labels = array(

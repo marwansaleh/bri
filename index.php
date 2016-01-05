@@ -140,12 +140,15 @@ switch (ENVIRONMENT) {
             $assign_to_config['base_url'] = 'http://www.bri.co.id/'; break;
         default:
             $assign_to_config['base_url'] = 'http://bri.dev/';
+            $assign_to_config['cookie_domain'] = '.bri.dev'; 
             $assign_to_config['userfiles_base_url'] = 'http://bri.dev/userfiles/';
             $assign_to_config['userfiles_base_path'] = 'userfiles/';
             $assign_to_config['assets_path'] = 'assets/';
             $assign_to_config['lib_path'] = 'library/';
     }
     $assign_to_config['cms_path'] = 'cms/';
+    $assign_to_config['log_path'] = '';
+    $assign_to_config['log_name'] = 'bri.log';
 
 
 // --------------------------------------------------------------------
