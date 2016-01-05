@@ -4,7 +4,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>BRI.CO.ID</b></a>
+        <a href="<?php echo get_cms_url('dashboard'); ?>" class="logo"><b>BRI.CO.ID</b></a>
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -20,38 +20,38 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img src="<?php //echo $avatar_url_me; ?>" class="user-image user-active-image" alt="User Image">
+                  <img src="<?php echo get_asset_url('img/default-avatar.jpg'); ?>" class="user-image user-active-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs"><?php //echo $me->full_name; ?></span>
+                  <span class="hidden-xs">Administrator</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img src="<?php //echo $avatar_url_me; ?>" class="img-circle user-active-image" alt="User Image">
+                      <img src="<?php echo get_asset_url('img/default-avatar.jpg'); ?>" class="img-circle user-active-image" alt="User Image">
                     <p>
-                      <?php //echo $me->full_name; ?>
-                      <small>Member since <?php //echo date('M, Y', $me->created_on); ?></small>
+                      Administrator
+                      <small>Member since Jan 5, 2015</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
                   <li class="user-body">
                     <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
+                      <a href="#">Skip</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
+                      <a href="#">Skip</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
+                      <a href="#">Skip</a>
                     </div>
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="<?php //echo site_url('cms/profile/index?id='.$me->id); ?>" class="btn btn-default btn-flat">Profile</a>
+                        <a href="<?php echo get_cms_url('user/profile'); ?>" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                        <a href="<?php //echo site_url('auth/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="<?php echo get_cms_url('auth/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -69,10 +69,10 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="<?php //echo $avatar_url_me; ?>" class="img-circle user-active-image" alt="User Image">
+              <img src="<?php echo get_asset_url('img/default-avatar.jpg'); ?>" class="img-circle user-active-image" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p><?php //echo $me->group_name; ?></p>
+              <p>Admin</p>
               <!-- Status -->
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -90,7 +90,7 @@
           <!-- /.search form -->
 
           <!-- Sidebar Menu -->
-          <?php //$this->load->view('components/_admin_menu') ?>
+          <?php $this->load->view('components/_admin_menu') ?>
           <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

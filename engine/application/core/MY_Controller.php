@@ -185,7 +185,12 @@ class MY_FrontController extends MY_Controller {
 }
 
 class MY_AdminController extends MY_Controller {
-    
+    function __construct() {
+        parent::__construct();
+        
+        $this->data['breadcumb'] = array();
+        $this->data['body_class'] = 'skin-blue';
+    }
 }
 
 /**

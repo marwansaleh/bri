@@ -33,6 +33,18 @@ if (!function_exists('breadcumb')){
     }
 }
 
+if (!function_exists('breadcumb_add')){
+    function breadcumb_add(&$breadcumb,$title,$link=NULL,$active=FALSE){
+        if (is_array($breadcumb)){
+            $item = array('title'=>$title, 'active'=>$active);
+            if ($link){
+                $item['link'] = $link;
+            }
+            $breadcumb [] = $item;
+        }
+    }
+}
+
 if (!function_exists('create_alert_box')){
     function create_alert_box($alert_text, $alert_type=NULL, $alert_title=NULL, $autohide=TRUE, $secs=2500){
         $type_labels = array(
@@ -116,6 +128,16 @@ if (!function_exists('array_submits')){
         }
         
         return $data;
+    }
+}
+
+if (!function_exists('get_cms_url')){
+    function get_cms_url($file=NULL){
+        if ($file){
+            return site_url(config_item('cms_path') . $file);
+        }else{
+            return site_url(config_item('cms_path')) .'/';
+        }
     }
 }
 
