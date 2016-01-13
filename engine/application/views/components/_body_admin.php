@@ -20,14 +20,14 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img src="<?php echo get_asset_url('img/default-avatar.jpg'); ?>" class="user-image user-active-image" alt="User Image">
+                  <img src="<?php echo get_asset_url('img/default-avatar-man.jpg'); ?>" class="user-image user-active-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs">Administrator</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                      <img src="<?php echo get_asset_url('img/default-avatar.jpg'); ?>" class="img-circle user-active-image" alt="User Image">
+                      <img src="<?php echo get_asset_url('img/default-avatar-man.jpg'); ?>" class="img-circle user-active-image" alt="User Image">
                     <p>
                       Administrator
                       <small>Member since Jan 5, 2015</small>
@@ -69,7 +69,7 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="<?php echo get_asset_url('img/default-avatar.jpg'); ?>" class="img-circle user-active-image" alt="User Image">
+              <img src="<?php echo get_asset_url('img/default-avatar-man.jpg'); ?>" class="img-circle user-active-image" alt="User Image">
             </div>
             <div class="pull-left info">
               <p>Admin</p>

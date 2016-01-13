@@ -101,3 +101,15 @@ define('CT_MAINMENU_CORPORATE', 1);
 //constant language
 define('CT_LANG_INDONESIA', 'indonesia');
 define('CT_LANG_ENGLISH', 'english');
+
+//Static string
+define('CT_STATICGROUP_TOPMENU', 'topmenu');
+define('CT_STATICGROUP_CORPTABS', 'corptabs');
+define('CT_STATICGROUP_CORPBOX', 'corpbox');
+
+//Page category
+define('CT_PAGECATEGORY_PRODUCT', 0);
+define('CT_PAGECATEGORY_NEW', 1);
+define('CT_PAGECATEGORY_COMPLIANCES', 2);
+define('CT_PAGECATEGORY_ANNOUNCEMENT', 3);
+define('CT_PAGECATEGORY_ECOREV', 4);

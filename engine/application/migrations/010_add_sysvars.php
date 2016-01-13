@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_groups
+ * Description of Migration_Add_sysvars
  *
  * @author marwansaleh
  */
-class Migration_add_systemvars extends CI_Migration {
+class Migration_Add_sysvars extends CI_Migration {
     private $_table_name = 'system_variables';
     private $_primary_key = 'id';
     private $_index_keys = array('name');
@@ -30,7 +30,7 @@ class Migration_add_systemvars extends CI_Migration {
                 'null' => TRUE
             ),
             'datatype'    => array(
-                'type' => 'ENUM("string","numeric","boolean","list")',
+                'type' => 'ENUM("string","integer","numeric","boolean","list")',
                 'null' => FALSE,
                 'default' => 'string'
             ),

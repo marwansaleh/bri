@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                     <div class="form-group">
-                                        <label class="control-label">Laporan</label>
+                                        <label class="control-label"><?php echo $corpbox['corp_drop_report']->value; ?></label>
                                         <div class="input-group input-group-sm">
                                             <select class="form-control">
                                                 <option value="">Laporan tahunan</option>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                     <div class="form-group">
-                                        <label class="control-label">Suku bunga</label>
+                                        <label class="control-label"><?php echo $corpbox['corp_drop_rate']->value; ?></label>
                                         <div class="input-group input-group-sm">
                                             <select class="form-control">
                                                 <option value="">Kurs harian</option>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                     <div class="form-group">
-                                        <label class="control-label">BRI links</label>
+                                        <label class="control-label"><?php echo $corpbox['corp_drop_link']->value; ?></label>
                                         <div class="input-group input-group-sm">
                                             <select class="form-control">
                                                 <option value="">Internet banking</option>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                     <div class="form-group">
-                                        <label class="control-label">Layanan lainnya</label>
+                                        <label class="control-label"><?php echo $corpbox['corp_drop_other']->value; ?></label>
                                         <div class="input-group input-group-sm">
                                             <select class="form-control">
                                                 <option value="">Unit kerja bri</option>
@@ -95,16 +95,14 @@
                 <div class="row">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-justified bg-orange" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">WARTA BRI</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">ULASAN EKONOMI</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">COMPLIANCES</a></li>
-                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">PENGUMUMAN</a></li>
-                        <li role="presentation"><a href="#ekonomi" aria-controls="ekonomi" role="tab" data-toggle="tab">KABAR EKONOMI</a></li>
+                        <?php $tab_index=0; foreach ($main_tabs as $tab): ?>
+                        <li role="presentation" <?php echo $tab_index==0?' class="active"':''; ?>><a href="#corporate-tab-<?php echo $tab_index; ?>" aria-controls="home" role="tab" data-toggle="tab"><?php echo strtoupper($tab->value); ?></a></li>
+                        <?php $tab_index++; endforeach; ?>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">
+                        <div role="tabpanel" class="tab-pane active" id="corporate-tab-0">
                             <ul class="list-group">
                                 <li class="list-group-item"><a href="#">2015-02-03	Moratorium KUR, BRI Salurkan Kupedes Rakyat</a></li>
                                 <li class="list-group-item"><a href="#">2015-02-03	BRI Tingkatkan Pertumbuhan Transaksi E-Channel dan E-Banking</a></li>
@@ -118,7 +116,7 @@
                                 <li class="list-group-item"><a href="#">2015-02-03	Moratorium KUR, BRI Salurkan Kupedes Rakyat</a></li>
                             </ul>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">
+                        <div role="tabpanel" class="tab-pane" id="corporate-tab-1">
                             <ul class="list-group">
                                 <li class="list-group-item"><a href="#">2014-11-12	Teras BRI Kapal, Siap Layani Pulau-pulau di Seluruh Indonesia</a></li>
                                 <li class="list-group-item"><a href="#">2014-10-28	BRI Juara Umum Annual Report Award 2014</a></li>
@@ -132,9 +130,9 @@
                                 <li class="list-group-item"><a href="#">2014-11-25	BISA LAYANI UANG DIGITAL 2015, BRILink Ditargetkan Mencapai 50.000 Agen</a></li>
                             </ul>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="messages">...</div>
-                        <div role="tabpanel" class="tab-pane" id="settings">...</div>
-                        <div role="tabpanel" class="tab-pane" id="ekonomi">...</div>
+                        <div role="tabpanel" class="tab-pane" id="corporate-tab-2">...</div>
+                        <div role="tabpanel" class="tab-pane" id="corporate-tab-3">...</div>
+                        <div role="tabpanel" class="tab-pane" id="corporate-tab-4">...</div>
                     </div>
 
                 </div>

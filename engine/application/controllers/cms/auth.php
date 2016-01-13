@@ -65,6 +65,12 @@ class Auth extends MY_FrontController{
         redirect(config_item('cms_path') . 'auth/index');
     }
     
+    function logout(){
+        $this->session->sess_destroy();
+        
+        redirect(get_cms_url('auth'));
+    }
+    
     private function _create_captcha(){
         $this->load->helper('captcha');
         

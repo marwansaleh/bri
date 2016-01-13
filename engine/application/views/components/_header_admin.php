@@ -12,7 +12,7 @@
         <link href="<?php echo get_lib_url('bootstrap/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo get_lib_url('iCheck/minimal/blue.css'); ?>" rel="stylesheet">
         <link href="<?php echo get_lib_url('font-awesome-4.1.0/css/font-awesome.min.css'); ?>" rel="stylesheet">   
-        <link href="<?php echo get_asset_url('css/skins/skin-blue.min.css'); ?>" rel="stylesheet">
+        <link href="<?php echo get_asset_url('css/skins/_all-skins.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo get_lib_url('bootstrap-select/css/bootstrap-select.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo get_lib_url('datetimepicker/css/bootstrap-datetimepicker.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo get_lib_url('tagsinput/bootstrap-tagsinput.css'); ?>" rel="stylesheet">

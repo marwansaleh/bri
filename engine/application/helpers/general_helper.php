@@ -141,6 +141,24 @@ if (!function_exists('get_cms_url')){
     }
 }
 
+if (!function_exists('variable_type_cast')){
+    function variable_type_cast($value, $type='string'){
+        switch ($type){
+            case 'integer': return intval($value); 
+            case 'numeric': return floatval($value);
+            case 'boolean': return boolval($value);
+            case 'list': return __make_list($value);
+            default : return strval($value);
+        }
+    }
+    
+    function __make_list($value, $delim=','){
+        $list = explode($delim, $value);
+        
+        return $list;
+    }
+}
+
 /*
  * Filename: general_helper.php
  * Location: application/helpers/general_helper.php

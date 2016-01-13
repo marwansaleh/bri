@@ -18,6 +18,8 @@ class Dashboard extends MY_AdminController{
     function index(){
         $this->data['page_description'] = 'Display important parameters';
         
+        $this->set_skin_active($this->get_skin('blue'));
+        
         //set breadcumb
         breadcumb_add($this->data['breadcumb'], 'Home', site_url('home'), TRUE);
         breadcumb_add($this->data['breadcumb'], 'Dashboard', get_cms_url('dashboard'), TRUE);

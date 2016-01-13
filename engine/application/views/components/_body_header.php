@@ -13,10 +13,9 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-4">
                                     <ul>
-                                        <li><a href="#"><?php echo strtoupper($this->lang->line('top_menu_veranda')); ?></a></li>
-                                        <li class="active"><a href="<?php echo site_url('language/set/'. ($language==CT_LANG_INDONESIA?CT_LANG_ENGLISH:CT_LANG_INDONESIA)); ?>"><?php echo strtoupper($this->lang->line('top_menu_language')); ?></a></li>
-                                        <li><a href="#"><?php echo strtoupper($this->lang->line('top_menu_contactus')); ?></a></li>
-                                        <li><a href="#"><?php echo strtoupper($this->lang->line('top_menu_faq')); ?></a></li>
+                                        <?php foreach ($top_menus as $tm): ?>
+                                        <li <?php echo $tm->name=='top_menu_lang'?'class="active"':''; ?>><a href="<?php echo $tm->link; ?>"><?php echo strtoupper($tm->value); ?></a></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                                 <div class="col-xs-12 col-sm-4">

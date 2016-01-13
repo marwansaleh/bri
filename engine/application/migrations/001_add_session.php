@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_ci_session
+ * Description of Migration_Add_session
  *
  * @author marwansaleh
  */
-class Migration_add_ci_session extends CI_Migration {
-    private $_table_name = 'ci_sessions';
+class Migration_Add_session extends CI_Migration {
+    private $_table_name = 'sessions';
     private $_primary_key = 'id';
     private $_index_keys = array('timestamp');
     private $_attributes = array('ENGINE' => 'InnoDB');
@@ -53,6 +53,6 @@ class Migration_add_ci_session extends CI_Migration {
 }
 
 /*
- * filename : 001_add_ci_session.php
- * location : /application/migrations/001_add_ci_session.php
+ * filename : 001_add_session.php
+ * location : /application/migrations/001_add_session.php
  */
