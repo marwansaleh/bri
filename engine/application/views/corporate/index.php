@@ -7,9 +7,9 @@
     <div class="container">
         <div class="row">
             <div id="main-carousel" class="owl-carousel">
-                <div><img alt="slider 01" src="<?php echo get_userfile('slides/image-01.jpg'); ?>"></div>
-                <div><img alt="slider 02" src="<?php echo get_userfile('slides/image-02.jpg'); ?>"></div>
-                <div><img alt="slider 03" src="<?php echo get_userfile('slides/image-03.jpg'); ?>"></div>
+                <div><img alt="slider 01" src="<?php echo get_userfile('slides/image-01.jpg'); ?>" class="img-responsive"></div>
+                <div><img alt="slider 02" src="<?php echo get_userfile('slides/image-02.jpg'); ?>" class="img-responsive"></div>
+                <div><img alt="slider 03" src="<?php echo get_userfile('slides/image-03.jpg'); ?>" class="img-responsive"></div>
             </div>
         </div>
     </div>
@@ -32,12 +32,15 @@
                     <div class="col-sm-9">
                         <div class="box-combo-links">
                             <div class="row">
+                                <?php foreach ($dropboxes as $dropbox): ?>
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                     <div class="form-group">
-                                        <label class="control-label"><?php echo $corpbox['corp_drop_report']->value; ?></label>
+                                        <label class="control-label"><?php echo $dropbox->label; ?></label>
                                         <div class="input-group input-group-sm">
                                             <select class="form-control">
-                                                <option value="">Laporan tahunan</option>
+                                                <?php foreach ($dropbox->dropbox as $db): ?>
+                                                <option value="<?php echo $db->href; ?>" external="<?php echo $db->external?1:0; ?>"><?php echo $db->label; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                             <span class="input-group-btn">
                                                 <button class="btn bg-orange" type="button">Go</button>
@@ -45,45 +48,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                    <div class="form-group">
-                                        <label class="control-label"><?php echo $corpbox['corp_drop_rate']->value; ?></label>
-                                        <div class="input-group input-group-sm">
-                                            <select class="form-control">
-                                                <option value="">Kurs harian</option>
-                                            </select>
-                                            <span class="input-group-btn">
-                                                <button class="btn bg-orange" type="button">Go</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                    <div class="form-group">
-                                        <label class="control-label"><?php echo $corpbox['corp_drop_link']->value; ?></label>
-                                        <div class="input-group input-group-sm">
-                                            <select class="form-control">
-                                                <option value="">Internet banking</option>
-                                            </select>
-                                            <span class="input-group-btn">
-                                                <button class="btn bg-orange" type="button">Go</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                    <div class="form-group">
-                                        <label class="control-label"><?php echo $corpbox['corp_drop_other']->value; ?></label>
-                                        <div class="input-group input-group-sm">
-                                            <select class="form-control">
-                                                <option value="">Unit kerja bri</option>
-                                            </select>
-                                            <span class="input-group-btn">
-                                                <button class="btn bg-orange" type="button">Go</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>

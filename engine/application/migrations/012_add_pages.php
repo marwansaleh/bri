@@ -50,6 +50,10 @@ class Migration_Add_pages extends CI_Migration {
                 'type' => 'TEXT',
                 'null' => TRUE
             ),
+            'link'    => array (
+                'type' => 'VARCHAR',
+                'constraint' => 254
+            ),
             'created_by'   => array(
                 'type'  => 'INT',
                 'constraint' => 11
@@ -91,6 +95,7 @@ class Migration_Add_pages extends CI_Migration {
                 'date_time'     => '2016-01-6 08:59:1',
                 'content_id'    => 'Sejarah BRI',
                 'content_en'    => 'The History of BRI',
+                'link'          => 'corporate/detail/about_the_history_of_bri',
                 'created_by'    => 1,
                 'updated_by'    => 1,
                 'created'       => time(),

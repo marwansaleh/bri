@@ -56,13 +56,6 @@ class Menu_m extends MY_Model {
             'rules' => 'trim|xss_clean'
         )
     );
-    
-    public function save($data, $id = NULL) {
-        if (!$id && !isset($data['inserted'])){
-            $data['inserted'] = time();
-        }
-        return parent::save($data, $id);
-    }
 }
 
 /*

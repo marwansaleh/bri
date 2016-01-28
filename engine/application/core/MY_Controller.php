@@ -197,6 +197,11 @@ class MY_Controller extends CI_Controller {
     private function _menu_item_child_recursion($menuitem, $basedata, $language=CT_LANG_INDONESIA){
         $menuitem->caption = $language==CT_LANG_INDONESIA ? $menuitem->caption_id : $menuitem->caption_en;
         $menuitem->title = $language==CT_LANG_INDONESIA ? $menuitem->title_id : $menuitem->title_en;
+        if (strpos($menuitem->href, 'http://')===FALSE){
+            $menuitem->external = FALSE;
+        }else{
+            $menuitem->external = TRUE;
+        }
         if (isset($basedata['parents'][$menuitem->id])){
             $menuitem->children = array();
             foreach ($basedata['parents'][$menuitem->id] as $menuid){
@@ -271,6 +276,31 @@ class MY_FrontController extends MY_Controller {
         }
         
         return $top_menu;
+    }
+    
+    function get_dropdox($language=CT_LANG_INDONESIA){
+        $result = array();
+        
+        if (!isset($this->dropbox_m)){
+            $this->load->model(array('dropbox_m','dropbox_category_m'));
+        }
+        
+        //load all dropbox category
+        $categories = $this->dropbox_category_m->get();
+        foreach ($categories as $cat){
+            $cat->label = $language == CT_LANG_INDONESIA ? $cat->label_id : $cat->label_en;
+            $cat->dropbox = array();
+            
+            $dropboxes = $this->dropbox_m->get_by(array('category'=>$cat->id));
+            foreach ($dropboxes as $db){
+                $db->label = $language==CT_LANG_INDONESIA ? $db->label_id : $db->label_en;
+                $db->external = strpos($db->href, 'http')===FALSE ? FALSE : TRUE;
+                $cat->dropbox [] = $db;
+            }
+            $result[] = $cat;
+        }
+        
+        return $result;
     }
 }
 

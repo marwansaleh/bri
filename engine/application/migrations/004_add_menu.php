@@ -165,7 +165,7 @@ class Migration_add_menu extends CI_Migration {
                 'caption_en'    => 'BRI History',
                 'title_id'      => 'Sejarah BRI',
                 'title_en'      => 'BRI history',
-                'href'          => 'corporate/aboutus/history',
+                'href'          => 'corporate/detail/about_the_history_of_bri',
                 'category'      => CT_MAINMENU_CORPORATE,
                 'sort'          => 0,
                 'created'       => time(),

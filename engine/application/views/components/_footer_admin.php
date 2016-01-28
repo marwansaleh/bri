@@ -30,6 +30,8 @@
         </script>
         <!-- bootstrap -->
         <script src="<?php echo get_lib_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
+        <script src="<?php echo get_asset_url('js/admin-lte.js'); ?>"></script>
+        <script src="<?php echo get_asset_url('js/main.js'); ?>"></script>
         <!-- nice scroll -->
         <script src="<?php echo get_lib_url('scrollTo/jquery.scrollTo.min.js'); ?>"></script>
         <script src="<?php echo get_lib_url('nicescroll/jquery.nicescroll.min.js'); ?>"></script>
@@ -49,5 +51,7 @@
         <script src="<?php echo get_lib_url('tagsinput/bootstrap-tagsinput-angular.js'); ?>"></script>
         <!-- Image Row grid -->
         <script src="<?php echo get_lib_url('rowgrid/jquery.row-grid.min.js'); ?>"></script>
+        <!-- form validation -->
+        <script src="<?php echo get_lib_url('jquery-validation/jquery.validate.min.js'); ?>"></script>
     </body>
 </html>

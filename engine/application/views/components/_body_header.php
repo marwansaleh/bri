@@ -55,7 +55,7 @@
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
                             <?php foreach ($mainmenu as $menuitem): ?>
-                            <li><a href="<?php echo $menuitem->href; ?>"><?php echo strtoupper($menuitem->caption); ?></a></li>
+                            <li><a href="<?php echo $menuitem->href; ?>" <?php echo $menuitem->external?'target="_blank"':''; ?>><?php echo strtoupper($menuitem->caption); ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>

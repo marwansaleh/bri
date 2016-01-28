@@ -111,7 +111,7 @@
 
         <!-- Main content -->
         <section class="content">
-          
+          <div id="loader" class="myloader transparent"></div>
           <!-- Your Page Content Here -->
           <?php if (isset($subview)){ $this->load->view($subview); } ?>
           

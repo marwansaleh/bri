@@ -24,11 +24,12 @@
         <link href="<?php echo get_asset_url('css/AdminLTE.min.css'); ?>" rel="stylesheet">
         
         <script src="<?php echo get_lib_url('jquery/jquery-1.11.3.min.js'); ?>"></script>
-        <script src="<?php echo get_asset_url('js/admin-lte.js'); ?>"></script>
+        
         <!--[if lt IE 9]>
           <script src="<?php echo get_lib_url('html5shiv/3.7.2/html5shiv.min.js'); ?>"></script>
           <script src="<?php echo get_lib_url('respond/1.4.2/respond.min.js'); ?>"></script>
         <![endif]-->
+        <script>var BASEURL="<?php echo site_url() ?>", CMSURL="<?php echo get_cms_url(); ?>";</script>
     </head>
     <body <?php echo isset($body_class) && $body_class?'class="'.$body_class.'"':''; ?>>
     
