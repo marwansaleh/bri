@@ -17,7 +17,7 @@
                 //selectpicker
                 $('select.selectpicker').selectpicker();
                 $('.datetimepicker').datetimepicker({
-                    format: 'DD-MM-YYYY HH:mm',
+                    format: 'YYYY-MM-DD HH:mm:ss',
                 });
                 $('.confirmation').on('click',function(){
                     var confirm_text = 'Are you sure to delete this item?';
@@ -31,7 +31,6 @@
         <!-- bootstrap -->
         <script src="<?php echo get_lib_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
         <script src="<?php echo get_asset_url('js/admin-lte.js'); ?>"></script>
-        <script src="<?php echo get_asset_url('js/main.js'); ?>"></script>
         <!-- nice scroll -->
         <script src="<?php echo get_lib_url('scrollTo/jquery.scrollTo.min.js'); ?>"></script>
         <script src="<?php echo get_lib_url('nicescroll/jquery.nicescroll.min.js'); ?>"></script>

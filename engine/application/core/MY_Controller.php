@@ -171,7 +171,9 @@ class MY_Controller extends CI_Controller {
             
             //iterate menu array to construct menus hierarchy
             foreach ($menu_array['items'] as $item){
-                $menu[] = $this->_menu_item_child_recursion($item, $menu_array, $language);
+                if (!isset($menu_array['used_items']) || !in_array($item->id, $menu_array['used_items'])){
+                    $menu[] = $this->_menu_item_child_recursion($item, $menu_array, $language);
+                }
             }
         }
         
@@ -194,7 +196,9 @@ class MY_Controller extends CI_Controller {
         return $staticstrings;
     }
     
-    private function _menu_item_child_recursion($menuitem, $basedata, $language=CT_LANG_INDONESIA){
+    private function _menu_item_child_recursion($menuitem, &$basedata, $language=CT_LANG_INDONESIA){
+        $basedata['used_items'][] = $menuitem->id;
+        
         $menuitem->caption = $language==CT_LANG_INDONESIA ? $menuitem->caption_id : $menuitem->caption_en;
         $menuitem->title = $language==CT_LANG_INDONESIA ? $menuitem->title_id : $menuitem->title_en;
         if (strpos($menuitem->href, 'http://')===FALSE){
@@ -207,6 +211,8 @@ class MY_Controller extends CI_Controller {
             foreach ($basedata['parents'][$menuitem->id] as $menuid){
                 $this->_menu_item_child_recursion($basedata['items'][$menuid], $basedata, $language);
                 $menuitem->children [] = $basedata['items'][$menuid];
+                $basedata['used_items'][] = $menuid;
+                
             }
         }else{
             $menuitem->children = NULL;

@@ -159,6 +159,34 @@ if (!function_exists('variable_type_cast')){
     }
 }
 
+if (!function_exists('create_menus_from_array')){
+    function create_menus_from_array($data, $level=0){
+        $str = '<ul ' . ($level==0?'class="nav navbar-nav navbar-left"':'class="dropdown-menu '.($level>1?'sub-menu':'').'"').'>';
+        foreach($data as $menuitem){
+            if ($menuitem->children){
+                $str.= '<li class="dropdown">';
+                $str.= '<a href="'. ($menuitem->href?$menuitem->href:'#').'" '.($menuitem->external?'target="_blank"':'').' class="'.($level==0?'dropdown-toggle':'trigger right-caret').'"' .($level==0?' data-toggle="dropdown"':'').'>';
+                $str.= strtoupper($menuitem->caption);
+                if ($level==0){
+                    $str.= ' <span class="caret"></span>';
+                }
+                $str.= '</a>';
+                $str.= create_menus_from_array($menuitem->children, ($level+1));
+                $str.= '</li>';
+            }else{
+                $str.= '<li>';
+                $str.= '<a href="'. ($menuitem->href?$menuitem->href:'#').'" '.($menuitem->external?'target="_blank"':'').'>';
+                $str.= strtoupper($menuitem->caption);
+                $str.= '</a>';
+                $str.= '</li>';
+            }
+        }
+        $str.= '</ul>';
+        
+        return $str;
+    }
+}
+
 /*
  * Filename: general_helper.php
  * Location: application/helpers/general_helper.php

@@ -8,7 +8,7 @@
                 <select name="parent_id" class="form-control selectpicker" data-live-search="true" data-size="5" title="Choose one as parent...">
                     <option value="0">-- No Parent--</option>
                     <?php foreach ($parents as $parent): ?>
-                    <option value="<?php echo $parent->id;?>"><?php echo $parent->caption_id; ?></option>
+                    <option value="<?php echo $parent->id;?>"><?php echo $parent->caption_id; ?> / <?php echo $parent->caption_en; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -42,7 +42,14 @@
             </div>
             <div class="form-group form-group-lg">
                 <label for="href">Link Href</label>
-                <input type="text" name="href" class="form-control" placeholder="Link Url">
+                <div class="input-group input-group-lg">
+                    <input type="text" name="href" class="form-control" placeholder="Link Url">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default hidden" name="btn-open-remove-content"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                        <button type="button" class="btn btn-default" name="btn-open-page-dlg"><span class="glyphicon glyphicon-open"></span> Select from Page</button>
+                    </div>
+                </div>
+                
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -57,7 +64,7 @@
                 <div class="col-lg-6">
                     <div class="form-group form-group-lg">
                         <label for="sort">#Sorting Index</label>
-                        <input type="number" id="sort" name="sort" min="0" step="1" class="form-control" placeholder="Index number">
+                        <input type="number" id="sort" name="sort" min="0" step="1" class="form-control" value="0" placeholder="Index number">
                     </div>
                 </div>
             </div>
@@ -69,7 +76,22 @@
         </form>
     </div>
 </div>
-
+<div id="MyDialog" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Available Pages</h4>
+            </div>
+            <div class="modal-body">
+                <div class="list-group"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script type="text/javascript">
     var MenuManager = {
         id: null,
@@ -99,6 +121,8 @@
                 $('input[name=href]').val(data.href);
                 $('select[name=category]').val(data.category);
                 $('input[name=sort]').val(data.sort);
+                
+                _this.setButtonRemove();
             });
         },
         save: function (form){
@@ -170,8 +194,42 @@
             form.reset();
             $('select[name=parent_id]').selectpicker('refresh');
             this.setId(0);
+        },
+        loadAvailablePages: function(curUrl){
+            var _this = this;
+            $('#MyDialog .list-group').empty();
+            $('#MyDialog').modal('show');
+            _this._setLoader('loading');
+            
+            $.getJSON(_this._getUrl('service/page/all'),function (data){
+                _this._setLoader('reset');
+                for (var i in data){
+                    var active = curUrl==data[i].link?'active':'';
+                    var s= '<a class="list-group-item '+active+'" href="javascript:MenuManager.selectPageLink(\''+data[i].link+'\');">'+data[i].title_id+' / '+data[i].title_en+'</a>';
+                    
+                    $('#MyDialog .list-group').append(s);
+                }
+            });
+        },
+        selectPageLink: function(url){
+            $('#MyDialog').modal('hide');
+            $('input[name=href]').val(url);
+            this.setButtonRemove();
+        },
+        setButtonRemove: function(){
+            var _this = this;
+            var $button = $('button[name=btn-open-remove-content]');
+            var $input = $button.parents('.input-group').find('input');
+            $('button[name=btn-open-remove-content]').toggleClass('hidden', !($input.val()));
+            
+            $button.on('click', function(){
+                $input.val('');
+                _this.setButtonRemove();
+            });
+            
         }
     };
+    
     $(document).ready(function (){
         MenuManager.init();
         $('form.validation').validate({
@@ -185,7 +243,7 @@
                     required: true
                 },
                 href: {
-                    minlength: 2,
+                    minlength: 1,
                     required: true
                 },
                 category: {
@@ -205,6 +263,12 @@
         
         $('button[name=btn-new]').on('click',function(){
             MenuManager.createNew($('form.validation')[0]);
+        });
+        $('button[name=btn-open-page-dlg]').on('click', function(){
+            MenuManager.loadAvailablePages($(this).parents('.input-group').find('input').val());
+        });
+        $('input[name=href]').on('keyup', function(){
+            MenuManager.setButtonRemove();
         });
     });
 </script>

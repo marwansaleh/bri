@@ -102,7 +102,7 @@
         <section class="content-header">
           <h1>
             <?php echo isset($page_title)?$page_title:'Page Title'; ?>
-            <?php echo isset($page_description)?'<small>'.$page_description.'</small>':''; ?>
+            <?php echo isset($page_description)?'<small id="label-page-description">'.$page_description.'</small>':''; ?>
           </h1>
           <!-- Breadcumb -->
           <?php echo breadcrumb($breadcumb); ?>

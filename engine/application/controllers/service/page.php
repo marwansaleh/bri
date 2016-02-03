@@ -12,10 +12,14 @@ class Page extends REST_Api {
         'title_en'      => 'title_en',
         'title'         => 'title',
         'link'          => 'link',
+        'name'          => 'name',
+        'images'        => 'images',
+        'editable'      => 'editable',
         'category'      => 'category',
         'content_id'    => 'content_id',
         'content_en'    => 'content_en',
         'content'       => 'content',
+        'sort'          => 'sort',
         'date_time'     => 'date_time',
         'created'       => 'created',
         'created_dt'    => 'created_dt',
@@ -84,27 +88,48 @@ class Page extends REST_Api {
         
     }
     
+    function all_get(){
+        $result = array();
+        
+        $lang = $this->get('lang') ? $this->get('lang') : CT_LANG_INDONESIA;
+        $all = $this->page_m->get();
+        foreach ($all as $item){
+            $result[] = $this->_proccess_item($item, $lang);
+        }
+        if (count($result)){
+            $result = $this->remap_fields($this->_remap_fields, $result);
+        }
+        $this->response($result);
+    }
+    
     function index_post(){
-        $caption_id = $this->post('caption_id');
-        $caption_en = $this->post('caption_en');
         $title_id = $this->post('title_id');
         $title_en = $this->post('title_en');
-        $href = $this->post('href');
+        $link = $this->post('link');
         $category = $this->post('category');
+        $name = $this->post('name');
         $sort = $this->post('sort');
+        $date_time = $this->post('date_time');
+        $content_id = $this->post('content_id');
+        $content_en = $this->post('content_en');
+        $editable = $this->post('editable');
+        $images = $this->post('images');
         
         $data = array(
-            'parent_id'     => $parent_id,
-            'caption_id'    => $caption_en,
-            'caption_en'    => $caption_en,
+            'category'      => $category,
             'title_id'      => $title_id,
             'title_en'      => $title_en,
-            'href'          => $href,
-            'category'      => $category,
-            'sort'          => $sort
+            'link'          => $link,
+            'name'          => $name,
+            'editable'      => $editable,
+            'images'        => is_array($images)?json_encode($images):  json_encode(explode(',', $images)),
+            'sort'          => $sort,
+            'date_time'     => $date_time,
+            'content_id'    => $content_id,
+            'content_en'    => $content_en
         );
         
-        if (($id=$this->menu_m->save($data))){
+        if (($id=$this->page_m->save($data))){
             $result = array('status'=>TRUE, 'id'=>$id);
         }else{
             $result = array('status'=>FALSE, 'message' =>'Gagal menyimpan data');
@@ -115,11 +140,17 @@ class Page extends REST_Api {
     
     function index_put($id){
         $data = $this->array_from_post(
-                array('parent_id', 'caption_id', 'caption_en', 'title_id', 'title_en', 'href', 'category', 'sort'),
+                array('category', 'title_id', 'title_en', 'date_time','link', 'editable', 'images', 'name', 'sort','content_id','content_en'),
                 $this->put(), TRUE
         );
         
-        if ($this->menu_m->save($data, $id)){
+        if (is_array($data['images'])){
+            $data['images'] = json_encode($data['images']);
+        }else{
+            $data['images'] = json_encode(explode(',', $data['images']));
+        }
+        
+        if ($this->page_m->save($data, $id)){
             $result = array('status' => TRUE);
         }else{
             $result = array('status'=>FALSE, 'message'=>'Gagal menyimpan perubahan dengan pesan: '. $this->menu_m->get_last_message());
@@ -129,7 +160,7 @@ class Page extends REST_Api {
     }
     
     function index_delete($id){
-        if ($this->menu_m->delete($id)){
+        if ($this->page_m->delete($id)){
             $result = array('status'=>TRUE);
         }else{
             $result = array('status'=>FALSE, 'message'=>'Gagal menghapus data dengan pesan: '. $this->menu_m->get_last_message());
@@ -144,6 +175,7 @@ class Page extends REST_Api {
             $item->content = $lang==CT_LANG_INDONESIA ? $item->content_id : $item->content_en;
             $item->created_dt = date('Y-m-d H:i:s', $item->created);
             $item->modified_dt = date('Y-m-d H:i:s', $item->modified);
+            $item->images = $item->images ? json_decode($item->images) : NULL;
         }
         
         return $item;

@@ -10,10 +10,11 @@ class Corporate extends MY_FrontController{
     function __construct() {
         parent::__construct();
         
-        $this->data['mainmenu'] = $this->get_menu(CT_MAINMENU_CORPORATE, FALSE, $this->get_language());
+        $this->data['mainmenu'] = $this->get_menu(CT_MAINMENU_CORPORATE, TRUE, $this->get_language());
         
     }
     function index(){
+        //echo json_encode($this->data['mainmenu']);exit;
         $language = $this->get_language();
         //get tabs title
         $this->data['main_tabs'] = $this->get_static_strings(CT_STATICGROUP_CORPTABS, $language);

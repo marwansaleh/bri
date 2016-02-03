@@ -24,7 +24,7 @@
         <link href="<?php echo get_asset_url('css/AdminLTE.min.css'); ?>" rel="stylesheet">
         
         <script src="<?php echo get_lib_url('jquery/jquery-1.11.3.min.js'); ?>"></script>
-        
+        <script src="<?php echo get_asset_url('js/main.js'); ?>"></script>
         <!--[if lt IE 9]>
           <script src="<?php echo get_lib_url('html5shiv/3.7.2/html5shiv.min.js'); ?>"></script>
           <script src="<?php echo get_lib_url('respond/1.4.2/respond.min.js'); ?>"></script>

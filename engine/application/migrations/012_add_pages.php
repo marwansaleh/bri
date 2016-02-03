@@ -42,6 +42,15 @@ class Migration_Add_pages extends CI_Migration {
                 'type' => 'DATETIME',
                 'null' => TRUE
             ),
+            'editable'    => array(
+                'type' => 'TINYINT',
+                'constraint' => 1,
+                'default' => 1
+            ),
+            'images' => array(
+                'type' => TEXT,
+                'null' => TRUE
+            ),
             'content_id'    => array(
                 'type' => 'TEXT',
                 'null' => TRUE
@@ -53,6 +62,11 @@ class Migration_Add_pages extends CI_Migration {
             'link'    => array (
                 'type' => 'VARCHAR',
                 'constraint' => 254
+            ),
+            'sort'  => array(
+                'type'  =>'INT',
+                'constraint' => 7,
+                'default' => 0
             ),
             'created_by'   => array(
                 'type'  => 'INT',

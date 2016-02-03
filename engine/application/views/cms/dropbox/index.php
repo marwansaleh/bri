@@ -174,7 +174,7 @@
             _this._setLoader('loading');
             $.ajax({
                 type: 'DELETE',
-                url: _this._getUrl('service/menu/index/'+id),
+                url: _this._getUrl('service/dropbox/index/'+id),
                 dataType: 'json',
                 success: function (data){
                     _this._setLoader('reset');
@@ -252,6 +252,7 @@
     function deleteItem(id){
         if (confirm('Anda yakin menghapus data ini ?')){
             MenuManager.remove(id);
+            MenuManager.load();
         }
     }
     

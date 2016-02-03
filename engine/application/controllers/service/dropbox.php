@@ -82,6 +82,54 @@ class Dropbox extends REST_Api {
         
     }
     
+    function index_post(){
+        $category = $this->post('category');
+        $label_id = $this->post('label_id');
+        $label_en = $this->post('label_en');
+        $href = $this->post('href');
+        $sort = $this->post('sort');
+        
+        $data = array(
+            'category'     => $category,
+            'label_id'    => $label_id,
+            'label_en'    => $label_en,
+            'href'          => $href,
+            'sort'          => $sort
+        );
+        
+        if (($id=$this->dropbox_m->save($data))){
+            $result = array('status'=>TRUE, 'id'=>$id);
+        }else{
+            $result = array('status'=>FALSE, 'message' =>'Gagal menyimpan data');
+        }
+        
+        $this->response($result);
+    }
+    
+    function index_put($id){
+        $data = $this->array_from_post(
+                array('category', 'label_id','label_en','href','sort'),
+                $this->put(), TRUE
+        );
+        
+        if ($this->dropbox_m->save($data, $id)){
+            $result = array('status' => TRUE);
+        }else{
+            $result = array('status'=>FALSE, 'message'=>'Gagal menyimpan perubahan dengan pesan: '. $this->dropbox_m->get_last_message());
+        }
+        
+        $this->response($result);
+    }
+    
+    function index_delete($id){
+        if ($this->dropbox_m->delete($id)){
+            $result = array('status'=>TRUE);
+        }else{
+            $result = array('status'=>FALSE, 'message'=>'Gagal menghapus data dengan pesan: '. $this->dropbox_m->get_last_message());
+        }
+        
+        $this->response($result);
+    }
     
     private function _proccess_item($item=NULL, $lang = CT_LANG_INDONESIA){
         if ($item){
@@ -89,11 +137,17 @@ class Dropbox extends REST_Api {
             $item->created_dt = date('Y-m-d H:i:s', $item->created);
             $item->modified_dt = date('Y-m-d H:i:s', $item->modified);
             
-            //get category name
-            $category = $this->dropbox_category_m->get($item->category);
-            $item->category_name = CT_LANG_INDONESIA ? $category->label_id : $category->label_en;
-            $item->category_name_id = $category->label_id;
-            $item->category_name_en = $category->label_en;
+            if ($item->category){
+                //get category name
+                $category = $this->dropbox_category_m->get($item->category);
+                $item->category_name = CT_LANG_INDONESIA ? $category->label_id : $category->label_en;
+                $item->category_name_id = $category->label_id;
+                $item->category_name_en = $category->label_en;
+            }else{
+                $item->category_name = 'No category';
+                $item->category_name_id = 'No category';
+                $item->category_name_en = 'No category';
+            }
         }
         
         return $item;

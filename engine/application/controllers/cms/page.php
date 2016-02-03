@@ -35,26 +35,23 @@ class Page extends MY_AdminController{
     }
     
     function edit($id=NULL, $page=1){
+        $this->data['page_categories'] = array(
+            CT_PAGECATEGORY_PRODUCT => 'Product', CT_PAGECATEGORY_NEWS => 'News',
+            CT_PAGECATEGORY_COMPLIANCES => 'Compliances', CT_PAGECATEGORY_ANNOUNCEMENT => 'Announcement',
+            CT_PAGECATEGORY_ECOREV => 'Economic Review'
+        );
+        
         $this->data['id'] = $id;
         
-        //get supporting data
-        $this->load->model('menu_m');
-        if ($id){
-            $parents = $this->menu_m->get_by(array('id !='=>$id));
-        }else{
-            $parents = $this->menu_m->get();
-        }
-        $this->data['parents'] = $parents;
-        
-        $this->data['page_description'] = $id ? 'Edit menu item' : 'Create menu item';
+        $this->data['page_description'] = $id ? 'Edit item' : 'Create new item';
         //set breadcumb
         breadcumb_add($this->data['breadcumb'], 'Home', site_url('home'));
         breadcumb_add($this->data['breadcumb'], 'Dashboard', get_cms_url('dashboard'));
-        breadcumb_add($this->data['breadcumb'], 'Menus', get_cms_url('menu'));
-        breadcumb_add($this->data['breadcumb'], 'Edit', get_cms_url('menu/edit'), TRUE);
+        breadcumb_add($this->data['breadcumb'], 'Page', get_cms_url('page'));
+        breadcumb_add($this->data['breadcumb'], 'Edit', get_cms_url('page/edit'), TRUE);
         
-        $this->data['back_url'] = get_cms_url('menu/index/'.$page);
-        $this->data['subview'] = 'cms/menu/edit';
+        $this->data['back_url'] = get_cms_url('page/index/'.$page);
+        $this->data['subview'] = 'cms/page/edit';
         $this->load->view('_layout_admin', $this->data);
     }
 }

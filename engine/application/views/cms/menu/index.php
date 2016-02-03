@@ -254,6 +254,7 @@
     function deleteItem(id){
         if (confirm('Anda yakin menghapus data ini ?')){
             MenuManager.remove(id);
+            MenuManager.load();
         }
     }
     

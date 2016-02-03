@@ -102,7 +102,7 @@ class Menu extends REST_Api {
         
         $data = array(
             'parent_id'     => $parent_id,
-            'caption_id'    => $caption_en,
+            'caption_id'    => $caption_id,
             'caption_en'    => $caption_en,
             'title_id'      => $title_id,
             'title_en'      => $title_en,

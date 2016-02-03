@@ -1,28 +1,34 @@
+<style type="text/css">
+    .image-item {max-height: 120px; margin-bottom: 10px; float:left; position: relative;}
+    .image-item .image-btn-group {position: absolute; top: 47%; left: 50%; transition: opacity 0.5s ease; opacity: 0.5}
+    .image-item:hover .image-btn-group {opacity: 1; }
+</style>
 <div class="row" id="message"></div>
 <div class="row">
     <div class="col-lg-12">
         <form class="validation" id="menuForm" method="post">
             <input type="hidden" name="id" value="<?php echo $id; ?>" />
-            <div class="form-group form-group-lg">
-                <label for="parent_id">Parent</label>
-                <select name="parent_id" class="form-control selectpicker" data-live-search="true" data-size="5" title="Choose one as parent...">
-                    <option value="0">-- No Parent--</option>
-                    <?php foreach ($parents as $parent): ?>
-                    <option value="<?php echo $parent->id;?>"><?php echo $parent->caption_id; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-sm-6">
                     <div class="form-group form-group-lg">
-                        <label for="caption_id">Caption ID</label>
-                        <input type="text" name="caption_id" class="form-control" placeholder="Caption Indonesia">
+                        <label for="category">Category</label>
+                        <select name="category" class="form-control selectpicker" data-live-search="true" data-size="5" title="Choose one category...">
+                            <option value="0">-- No Category--</option>
+                            <?php foreach ($page_categories as $key=>$value): ?>
+                            <option value="<?php echo $key;?>"><?php echo $value; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-sm-6">
                     <div class="form-group form-group-lg">
-                        <label for="caption_en">Caption EN</label>
-                        <input type="text" name="caption_en" class="form-control" placeholder="Caption English">
+                        <label>Date (yyyy-mm-dd)</label>
+                        <div class="input-group datetimepicker">
+                            <input type="text" name="date_time" class="form-control" value="<?php echo date('Y-m-d H:i');?>">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,49 +36,76 @@
                 <div class="col-lg-6">
                     <div class="form-group form-group-lg">
                         <label for="title_id">Title ID</label>
-                        <input type="text" name="title_id" class="form-control" placeholder="Title Indonesia">
+                        <input type="text" id="title_id" name="title_id" class="form-control" placeholder="Title Indonesia">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group form-group-lg">
                         <label for="title_en">Title EN</label>
-                        <input type="text" name="title_en" class="form-control" placeholder="Title English">
+                        <input type="text" id="title_en" name="title_en" class="form-control" placeholder="Title English">
                     </div>
                 </div>
             </div>
             <div class="form-group form-group-lg">
-                <label for="href">Link Href</label>
-                <input type="text" name="href" class="form-control" placeholder="Link Url">
+                <label for="name">Page Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Page name">
             </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group form-group-lg">
-                        <label for="category">Category</label>
-                        <select class="form-control" id="category" name="category">
-                            <option value="0">HOME</option>
-                            <option value="1">CORPORATE</option>
-                        </select>
+            <div class="form-group form-group-lg">
+                <label for="link">Link Href</label>
+                <input type="text" name="link" class="form-control" placeholder="Link Url">
+            </div>
+            
+            <div class="form-group form-group-lg">
+                <label>Select Images</label>
+                <input type="hidden" id="images" name="images" />
+                <div class="well well-lg">
+                    <div id="image-list-container" class="row">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="input-group input-group-lg">
+                            <input readonly="true" type="text" id="selected_image" class="form-control disabled">
+                            <div class="input-group-btn">
+                                <a class="btn btn-default" href="<?php echo get_lib_url('filemanager/dialog.php?type=1&field_id=selected_image&relative_url=1&iframe=true&width=90%&height=90%') ?>"  rel="prettyPhoto" >Browse</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group form-group-lg">
-                        <label for="sort">#Sorting Index</label>
-                        <input type="number" id="sort" name="sort" min="0" step="1" class="form-control" placeholder="Index number">
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#content_id" aria-controls="content_id" role="tab" data-toggle="tab">Content ID</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#content_en" aria-controls="content_en" role="tab" data-toggle="tab">Content EN</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="content_id">
+                            <div class="form-group form-group-lg"><textarea class="form-control texteditor" name="content_id" rows="15"></textarea></div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="content_en">
+                            <div class="form-group form-group-lg"><textarea class="form-control texteditor" name="content_en" rows="15"></textarea></div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="form-group form-group-lg">
                 <button type="submit" class="btn btn-primary btn-lg" name="submit"><i class="fa fa-save"></i> Save</button>
                 <button type="button" class="btn btn-warning btn-lg" name="btn-new"><i class="fa fa-book"></i> Create New</button>
-                <a class="btn btn-success btn-lg" href="<?php echo $back_url; ?>"><i class="fa fa-backward"></i> Cancel</a>
+                <a class="btn btn-success btn-lg" href="<?php echo $back_url; ?>"><i class="fa fa-backward"></i> Back</a>
             </div>
         </form>
     </div>
 </div>
-
+<script src="<?php echo get_lib_url('tinymce/tinymce.min.js'); ?>"></script>
 <script type="text/javascript">
-    var MenuManager = {
+    var MyManager = {
         id: null,
+        serviceName: 'page',
+        baseImages: 'userfiles/images/',
         setId: function (id){
             $('input[name=id]').val(id);
             this.id = parseInt(id);
@@ -89,16 +122,18 @@
             var _this = this;
             _this._setLoader('loading');
             
-            $.getJSON(_this._getUrl('service/menu/index/'+id),function (data){
+            $.getJSON(_this._getUrl('service/'+_this.serviceName+'/index/'+id),function (data){
                 _this._setLoader('reset');
-                $('select[name=parent_id]').val(data.parent_id);$('select[name=parent_id]').selectpicker('refresh');
-                $('input[name=caption_id]').val(data.caption_id);
-                $('input[name=caption_en]').val(data.caption_en);
+                $('select[name=category]').val(data.category);$('select[name=category]').selectpicker('refresh');
                 $('input[name=title_id]').val(data.title_id);
                 $('input[name=title_en]').val(data.title_en);
-                $('input[name=href]').val(data.href);
-                $('select[name=category]').val(data.category);
-                $('input[name=sort]').val(data.sort);
+                $('input[name=name]').val(data.name);
+                $('input[name=link]').val(data.link);
+                $('input[name=date_time]').val(data.date_time);
+                $('textarea[name=content_id]').val(data.content_id);
+                $('textarea[name=content_en]').val(data.content_en);
+                
+                _this.setImages(data.images);
             });
         },
         save: function (form){
@@ -112,7 +147,7 @@
             var _this = this;
             _this._setLoader('loading');
             
-            $.post(_this._getUrl('service/menu'),$(form).serialize(),function(data){
+            $.post(_this._getUrl('service/'+_this.serviceName),$(form).serialize(),function(data){
                 _this._setLoader('reset');
                 if (data.status){
                     _this.setId(data.id);
@@ -127,7 +162,7 @@
             _this._setLoader('loading');
             $.ajax({
                 type: 'PUT',
-                url: _this._getUrl('service/menu/index/'+_this.id),
+                url: _this._getUrl('service/'+_this.serviceName+'/index/'+_this.id),
                 data: $(form).serialize(),
                 dataType: 'json',
                 success: function (data){
@@ -170,17 +205,109 @@
             form.reset();
             $('select[name=parent_id]').selectpicker('refresh');
             this.setId(0);
+        },
+        urlTitle: function (source,target){
+            var url = $.trim($('#'+source).val());
+            url = url.replace('%','-persen');
+            //replace everything not alpha numeric
+            url = url.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            //url = url.replace(/[ \t\r]+/g,"-");
+            $('#'+target).val(url);
+        },
+        setImages: function(imgArr){
+            //clear image list
+            $('#image-list-container').empty();
+            if (imgArr && imgArr.length >0){
+                //draw images
+                for (var i in imgArr){
+                    var imageId = MainJS.guid();
+                    var s='<div class="image-item" id="'+imageId+'" data-image="'+imgArr[i]+'">';
+                        s+= '<img class="image-item img-responsive" src="'+(this._getUrl(imgArr[i]))+'"/>';
+                        s+= '<div class="image-btn-group">';
+                            s+= '<a rel="prettyPhoto" class="btn btn-primary btn-xs" title="View original of this image" href="'+this._getUrl(imgArr[i])+'">';
+                                s+= '<i class="fa fa-eye"></i>';
+                            s+='</a>';
+                            s+= '<a class="btn btn-danger btn-xs" title="Remove this image" href="javascript:void(\'\')" onclick="MyManager.removeImage(\''+imageId+'\')">';
+                                s+= '<i class="fa fa-minus-circle"></i>';
+                            s+='</a>';
+                        s+= '</div>';
+                    s+= '</div>';
+
+                    $('#image-list-container').append(s);
+                }
+
+                //update image list values
+                $('input#images').val(imgArr.join(','));
+                
+                //set prettyPhoto explicit
+                $("a[rel^='prettyPhoto']").prettyPhoto({social_tools:''}); 
+            }
+        },
+        removeImage: function (id){
+            //get image name
+            var imageName = document.getElementById(id).getAttribute('data-image');
+            //get image list value and convert into array
+            var imageList = $('input#images').val().split(',');
+            //remove the image from imagelist array
+            imageList.splice(imageList.indexOf(imageName),1);
+            //redraw the imagelist
+            this.setImages(imageList);
+        },
+        RFM_Callback: function (field_id){
+            var image_url = this.baseImages + document.getElementById(field_id).value;
+            //recreate image list value
+            var imageList = $('input#images').val();
+            if (imageList){
+                imageList = imageList.split(',');
+            }else{
+                imageList = new Array();
+            }
+            //add new image to list
+            imageList.push(image_url);
+            //update selected image field to base image url
+            document.getElementById(field_id).value = image_url;
+            //update and display image list
+            this.setImages(imageList);
         }
     };
+    
+    function responsive_filemanager_callback(field_id){
+        MyManager.RFM_Callback(field_id);
+    }
+    
+    tinymce.init({
+        selector: "textarea.texteditor",
+        theme: 'modern',
+        //width: '100%',
+        height: '220',
+        plugins : [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste responsivefilemanager"
+        ],
+        toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect | responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+        //toolbar2: "",
+        image_advtab: true,
+        external_filemanager_path:MyManager._getUrl('library/filemanager/'),
+        filemanager_title:"File Manager" ,
+        external_plugins: { "filemanager" : MyManager._getUrl('library/filemanager/plugin.min.js')},
+        filemanager_access_key:"",
+        relative_urls: false
+    });
+    
     $(document).ready(function (){
-        MenuManager.init();
+        MyManager.init();
         $('form.validation').validate({
             rules: {
-                caption_id: {
+                title_id: {
                     minlength: 2,
                     required: true
                 },
-                caption_en: {
+                title_en: {
+                    minlength: 2,
+                    required: true
+                },
+                name: {
                     minlength: 2,
                     required: true
                 },
@@ -188,7 +315,12 @@
                     minlength: 2,
                     required: true
                 },
-                category: {
+                content_id: {
+                    minlength: 10,
+                    required: true
+                },
+                content_en: {
+                    minlength: 10,
                     required: true
                 }
             },
@@ -199,12 +331,19 @@
                 $(element).closest('.form-group').removeClass('has-error');
             },
             submitHandler: function (form){
-                MenuManager.save(form);
+                tinyMCE.triggerSave();
+//                $(tinymce.get()).each(function(i, el){
+//                    document.getElementById(el.editorId).value = el.getContent();
+//                });
+                MyManager.save(form);
             }
         });
         
         $('button[name=btn-new]').on('click',function(){
-            MenuManager.createNew($('form.validation')[0]);
+            MyManager.createNew($('form.validation')[0]);
+        });
+        $('input[name=title_id]').on('blur', function(){
+            MyManager.urlTitle($(this).attr('id'), 'name');
         });
     });
 </script>
