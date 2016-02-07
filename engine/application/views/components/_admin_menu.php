@@ -3,7 +3,7 @@
     <!-- Optionally, you can add icons to the links -->
     <li <?php echo $active_menu=='dashboard'?'class="active"':''; ?>><a href="<?php echo site_url('cms/dashboard'); ?>"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
     <li <?php echo $active_menu=='page'?'class="active"':''; ?>><a href="<?php echo site_url('cms/page'); ?>"><i class="fa fa-file-text"></i> <span>Pages</span></a></li>
-    <li <?php echo $active_menu=='category'?'class="active"':''; ?>><a href="<?php echo site_url('cms/menu'); ?>"><i class="fa fa-list-alt"></i> <span>Menu</span></a></li>
+    <li <?php echo $active_menu=='menu'?'class="active"':''; ?>><a href="<?php echo site_url('cms/menu'); ?>"><i class="fa fa-list-alt"></i> <span>Menu</span></a></li>
     <li <?php echo $active_menu=='dropbox'?'class="active"':''; ?>><a href="<?php echo site_url('cms/dropbox'); ?>"><i class="fa fa-chain"></i> <span>Dropdown Links</span></a></li>
     
     <li class="treeview">

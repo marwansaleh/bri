@@ -187,6 +187,44 @@ if (!function_exists('create_menus_from_array')){
     }
 }
 
+if (!function_exists('page_category_name')){
+    function page_category_name($category){
+        $category_name = 'Product';
+        
+        switch ($category){
+            case CT_PAGECATEGORY_ECOREV:
+                $category_name = 'Economic'; break;
+            case CT_PAGECATEGORY_ANNOUNCEMENT:
+                $category_name = 'announcement'; break;
+            case CT_PAGECATEGORY_COMPLIANCES:
+                $category_name = 'Compliances'; break;
+            case CT_PAGECATEGORY_NEWS:
+                $category_name = 'News'; break;
+            case CT_PAGECATEGORY_PRODUCT:
+            default: $category_name = 'Product';
+        }
+        
+        return $category_name;
+    }
+}
+
+if (!function_exists('menu_category_name')){
+    function menu_category_name($category){
+        $category_name = 'Product';
+        
+        switch ($category){
+            case CT_MAINMENU_HOME:
+                $category_name = 'HOME'; break;
+            case CT_MAINMENU_TOP:
+                $category_name = 'TOP MENU'; break;
+            case CT_MAINMENU_CORPORATE:
+            default: $category_name = 'CORPORATE';
+        }
+        
+        return $category_name;
+    }
+}
+
 /*
  * Filename: general_helper.php
  * Location: application/helpers/general_helper.php

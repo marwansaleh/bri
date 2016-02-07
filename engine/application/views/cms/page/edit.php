@@ -66,13 +66,21 @@
                         <div class="input-group input-group-lg">
                             <input readonly="true" type="text" id="selected_image" class="form-control disabled">
                             <div class="input-group-btn">
-                                <a class="btn btn-default" href="<?php echo get_lib_url('filemanager/dialog.php?type=1&field_id=selected_image&relative_url=1&iframe=true&width=90%&height=90%') ?>"  rel="prettyPhoto" >Browse</a>
+                                <a class="btn btn-default" href="<?php echo get_lib_url('filemanager/dialog.php?type=1&field_id=selected_image&fldr=Page-Images&relative_url=1&iframe=true&width=90%&height=90%') ?>"  rel="prettyPhoto" >Browse</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="form-group form-group-lg">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="editable" value="1">
+                        Halaman ini memiliki content yang dapat diubah
+                    </label>
+                </div>
+            </div>
+            <div id="editor-container" class="row hidden">
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active">
@@ -130,10 +138,12 @@
                 $('input[name=name]').val(data.name);
                 $('input[name=link]').val(data.link);
                 $('input[name=date_time]').val(data.date_time);
+                $('input[name=editable]').prop('checked', data.editable=='1');
                 $('textarea[name=content_id]').val(data.content_id);
                 $('textarea[name=content_en]').val(data.content_en);
                 
                 _this.setImages(data.images);
+                _this.setEditorDisplay();
             });
         },
         save: function (form){
@@ -210,7 +220,7 @@
             var url = $.trim($('#'+source).val());
             url = url.replace('%','-persen');
             //replace everything not alpha numeric
-            url = url.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            url = 'pg_'+url.replace(/[^a-z0-9]/gi, '-').toLowerCase();
             //url = url.replace(/[ \t\r]+/g,"-");
             $('#'+target).val(url);
         },
@@ -224,7 +234,7 @@
                     var s='<div class="image-item" id="'+imageId+'" data-image="'+imgArr[i]+'">';
                         s+= '<img class="image-item img-responsive" src="'+(this._getUrl(imgArr[i]))+'"/>';
                         s+= '<div class="image-btn-group">';
-                            s+= '<a rel="prettyPhoto" class="btn btn-primary btn-xs" title="View original of this image" href="'+this._getUrl(imgArr[i])+'">';
+                            s+= '<a rel="prettyPhoto" class="btn btn-primary btn-xs" title="View original of this image" target="blank" href="'+this._getUrl(imgArr[i])+'">';
                                 s+= '<i class="fa fa-eye"></i>';
                             s+='</a>';
                             s+= '<a class="btn btn-danger btn-xs" title="Remove this image" href="javascript:void(\'\')" onclick="MyManager.removeImage(\''+imageId+'\')">';
@@ -238,9 +248,9 @@
 
                 //update image list values
                 $('input#images').val(imgArr.join(','));
-                
+                //console.log('Image list updated');
                 //set prettyPhoto explicit
-                $("a[rel^='prettyPhoto']").prettyPhoto({social_tools:''}); 
+                //$("a[rel^='prettyPhoto']").prettyPhoto({social_tools:''}); 
             }
         },
         removeImage: function (id){
@@ -268,6 +278,9 @@
             document.getElementById(field_id).value = image_url;
             //update and display image list
             this.setImages(imageList);
+        },
+        setEditorDisplay: function(){
+            $('#editor-container').toggleClass('hidden', !($('input[name=editable]').prop('checked')));
         }
     };
     
@@ -344,6 +357,9 @@
         });
         $('input[name=title_id]').on('blur', function(){
             MyManager.urlTitle($(this).attr('id'), 'name');
+        });
+        $('input[name=editable]').on('click', function(){
+            MyManager.setEditorDisplay();
         });
     });
 </script>

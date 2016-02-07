@@ -175,7 +175,19 @@
                 _this._setLoader('reset');
                 for (var i in data){
                     var active = curUrl==data[i].link?'active':'';
-                    var s= '<a class="list-group-item '+active+'" href="javascript:MyManager.selectPageLink(\''+data[i].link+'\');">'+data[i].title_id+' / '+data[i].title_en+'</a>';
+                    var badgeClass = '';
+                    switch (parseInt(data[i].category)){
+                        case 1: badgeClass = 'label-primary'; break;
+                        case 2: badgeClass = 'label-warning'; break;
+                        case 3: badgeClass = 'label-success'; break;
+                        case 4: badgeClass = 'label-default'; break;
+                        case 5: badgeClass = 'label-danger'; break;
+                        default: badgeClass = 'label-primary'; break;
+                    }
+                    var s= '<a class="list-group-item '+active+'" href="javascript:MyManager.selectPageLink(\''+data[i].link+'\');">';
+                        s+= '<span class="label '+badgeClass+' pull-right">'+data[i].category_name+'</span>';
+                        s+= data[i].title_id+' / '+data[i].title_en;
+                    s+= '</a>';
                     
                     $('#MyDialog .list-group').append(s);
                 }

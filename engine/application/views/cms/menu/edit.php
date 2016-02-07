@@ -16,7 +16,7 @@
                 <div class="col-lg-6">
                     <div class="form-group form-group-lg">
                         <label for="caption_id">Caption ID</label>
-                        <input type="text" name="caption_id" class="form-control" placeholder="Caption Indonesia">
+                        <input type="text" id="caption_id" name="caption_id" class="form-control" placeholder="Caption Indonesia">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -25,6 +25,10 @@
                         <input type="text" name="caption_en" class="form-control" placeholder="Caption English">
                     </div>
                 </div>
+            </div>
+            <div class="form-group form-group-lg">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Name">
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -56,8 +60,9 @@
                     <div class="form-group form-group-lg">
                         <label for="category">Category</label>
                         <select class="form-control" id="category" name="category">
-                            <option value="0">HOME</option>
-                            <option value="1">CORPORATE</option>
+                            <option value="<?php echo CT_MAINMENU_HOME; ?>"><?php echo menu_category_name(CT_MAINMENU_HOME); ?></option>
+                            <option value="<?php echo CT_MAINMENU_CORPORATE; ?>"><?php echo menu_category_name(CT_MAINMENU_CORPORATE); ?></option>
+                            <option value="<?php echo CT_MAINMENU_TOP; ?>"><?php echo menu_category_name(CT_MAINMENU_TOP); ?></option>
                         </select>
                     </div>
                 </div>
@@ -116,6 +121,7 @@
                 $('select[name=parent_id]').val(data.parent_id);$('select[name=parent_id]').selectpicker('refresh');
                 $('input[name=caption_id]').val(data.caption_id);
                 $('input[name=caption_en]').val(data.caption_en);
+                $('input[name=name]').val(data.name);
                 $('input[name=title_id]').val(data.title_id);
                 $('input[name=title_en]').val(data.title_en);
                 $('input[name=href]').val(data.href);
@@ -205,7 +211,20 @@
                 _this._setLoader('reset');
                 for (var i in data){
                     var active = curUrl==data[i].link?'active':'';
-                    var s= '<a class="list-group-item '+active+'" href="javascript:MenuManager.selectPageLink(\''+data[i].link+'\');">'+data[i].title_id+' / '+data[i].title_en+'</a>';
+                    var badgeClass = '';
+                    switch (parseInt(data[i].category)){
+                        
+                        case 1: badgeClass = 'label-primary'; break;
+                        case 2: badgeClass = 'label-warning'; break;
+                        case 3: badgeClass = 'label-success'; break;
+                        case 4: badgeClass = 'label-default'; break;
+                        case 5: badgeClass = 'label-danger'; break;
+                        default: badgeClass = 'label-primary'; break;
+                    }
+                    var s= '<a class="list-group-item '+active+'" href="javascript:MenuManager.selectPageLink(\''+data[i].link+'\');">';
+                        s+= '<span class="label '+badgeClass+' pull-right">'+data[i].category_name+'</span>';
+                        s+= data[i].title_id+' / '+data[i].title_en;
+                    s+= '</a>';
                     
                     $('#MyDialog .list-group').append(s);
                 }
@@ -227,6 +246,14 @@
                 _this.setButtonRemove();
             });
             
+        },
+        urlTitle: function (source,target){
+            var url = $.trim($('#'+source).val());
+            url = url.replace('%','-persen');
+            //replace everything not alpha numeric
+            url = 'mm_' + url.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            //url = url.replace(/[ \t\r]+/g,"-");
+            $('#'+target).val(url);
         }
     };
     
@@ -239,6 +266,10 @@
                     required: true
                 },
                 caption_en: {
+                    minlength: 2,
+                    required: true
+                },
+                name: {
                     minlength: 2,
                     required: true
                 },
@@ -269,6 +300,11 @@
         });
         $('input[name=href]').on('keyup', function(){
             MenuManager.setButtonRemove();
+        });
+        $('input#caption_id').on('blur', function (){
+            if (!$('input#name').val()){
+                MenuManager.urlTitle($(this).attr('id'),'name');
+            }
         });
     });
 </script>

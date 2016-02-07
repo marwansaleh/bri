@@ -16,6 +16,7 @@ class Page extends REST_Api {
         'images'        => 'images',
         'editable'      => 'editable',
         'category'      => 'category',
+        'category_name' => 'category_name',
         'content_id'    => 'content_id',
         'content_en'    => 'content_en',
         'content'       => 'content',
@@ -176,6 +177,7 @@ class Page extends REST_Api {
             $item->created_dt = date('Y-m-d H:i:s', $item->created);
             $item->modified_dt = date('Y-m-d H:i:s', $item->modified);
             $item->images = $item->images ? json_decode($item->images) : NULL;
+            $item->category_name = page_category_name($item->category);
         }
         
         return $item;

@@ -32,6 +32,11 @@ class Migration_add_menu extends CI_Migration {
                 'type'  => 'VARCHAR',
                 'constraint' => 30
             ),
+            'name' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 60,
+                'null' => FALSE
+            ),
             'title_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 150,
@@ -264,6 +269,54 @@ class Migration_add_menu extends CI_Migration {
                 'href'          => 'corporate/auctioninfo',
                 'category'      => CT_MAINMENU_CORPORATE,
                 'sort'          => 8,
+                'created'       => time(),
+                'modified'      => time()
+            ),
+            array(
+                'parent_id'     => 0,
+                'caption_id'    => 'Beranda',
+                'caption_en'    => 'Home',
+                'title_id'      => 'Beranda',
+                'title_en'      => 'Homepage',
+                'href'          => '/',
+                'category'      => CT_MAINMENU_TOP,
+                'sort'          => 0,
+                'created'       => time(),
+                'modified'      => time()
+            ),
+            array(
+                'parent_id'     => 0,
+                'caption_id'    => 'English',
+                'caption_en'    => 'Bahasa',
+                'title_id'      => 'Ganti bahasa ke English',
+                'title_en'      => 'Change language to Indonesia',
+                'href'          => 'language/index/',
+                'category'      => CT_MAINMENU_TOP,
+                'sort'          => 1,
+                'created'       => time(),
+                'modified'      => time()
+            ),
+            array(
+                'parent_id'     => 0,
+                'caption_id'    => 'Hubungi Kami',
+                'caption_en'    => 'Contact Us',
+                'title_id'      => 'Hubungi kami',
+                'title_en'      => 'Contact us',
+                'href'          => '#',
+                'category'      => CT_MAINMENU_TOP,
+                'sort'          => 2,
+                'created'       => time(),
+                'modified'      => time()
+            ),
+            array(
+                'parent_id'     => 0,
+                'caption_id'    => 'FAQ',
+                'caption_en'    => 'FAQ',
+                'title_id'      => 'FAQ',
+                'title_en'      => 'FAQ',
+                'href'          => '#',
+                'category'      => CT_MAINMENU_TOP,
+                'sort'          => 3,
                 'created'       => time(),
                 'modified'      => time()
             )

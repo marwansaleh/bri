@@ -14,8 +14,8 @@
                                 <div class="col-xs-12 col-sm-4">
                                     <ul>
                                         <?php foreach ($top_menus as $tm): ?>
-                                        <li <?php echo $tm->name=='top_menu_lang'?'class="active"':''; ?>>
-                                            <a href="<?php echo $tm->link; ?>"><?php echo strtoupper($tm->value); ?></a>
+                                        <li <?php echo $tm->name=='mm_language'?'class="active"':''; ?>>
+                                            <a href="<?php echo (rtrim($tm->href,'/')) .'/'. ($language==CT_LANG_ENGLISH?CT_LANG_INDONESIA:CT_LANG_ENGLISH); ?>"><?php echo strtoupper($tm->caption); ?></a>
                                         </li>
                                         <?php endforeach; ?>
                                     </ul>

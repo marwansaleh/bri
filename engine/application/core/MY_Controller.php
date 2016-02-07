@@ -203,6 +203,7 @@ class MY_Controller extends CI_Controller {
         $menuitem->title = $language==CT_LANG_INDONESIA ? $menuitem->title_id : $menuitem->title_en;
         if (strpos($menuitem->href, 'http://')===FALSE){
             $menuitem->external = FALSE;
+            $menuitem->href = $menuitem->href!=='#'?site_url($menuitem->href):'#';
         }else{
             $menuitem->external = TRUE;
         }
@@ -249,40 +250,40 @@ class MY_FrontController extends MY_Controller {
     function __construct() {
         parent::__construct();
         
-        $this->data['top_menus'] = $this->get_top_menu($this->get_language());
+        $this->data['top_menus'] = $this->get_menu(CT_MAINMENU_TOP, FALSE, $this->get_language());
     }
     
-    function get_home_menu(){
-        
-    }
+//    function get_home_menu(){
+//        
+//    }
+//    
+//    function get_corporate_menu(){
+//        return array();
+//    }
     
-    function get_corporate_menu(){
-        return array();
-    }
-    
-    function get_top_menu($language=CT_LANG_INDONESIA){
-        $top_menu = array();
-        
-        //get static text for top menu
-        $static_strings = $this->get_static_strings(CT_STATICGROUP_TOPMENU, $language);
-        foreach ($static_strings as $item){
-            $item->value = $language == CT_LANG_INDONESIA ? $item->value_id : $item->value_en;
-            switch ($item->name) {
-                case 'top_menu_home':
-                    $item->link = site_url(); break;
-                case 'top_menu_lang':
-                    $item->link = site_url('language/set/'. ($language==CT_LANG_INDONESIA?CT_LANG_ENGLISH:CT_LANG_INDONESIA));
-                    break;
-                case 'top_menu_contactus':
-                    $item->link = '';break;
-                case 'top_menu_faq':
-                    $item->link = '';break;
-            }
-            $top_menu[] = $item;
-        }
-        
-        return $top_menu;
-    }
+//    function get_top_menu($language=CT_LANG_INDONESIA){
+//        $top_menu = array();
+//        
+//        //get static text for top menu
+//        $static_strings = $this->get_static_strings(CT_STATICGROUP_TOPMENU, $language);
+//        foreach ($static_strings as $item){
+//            $item->value = $language == CT_LANG_INDONESIA ? $item->value_id : $item->value_en;
+//            switch ($item->name) {
+//                case 'top_menu_home':
+//                    $item->link = site_url(); break;
+//                case 'top_menu_lang':
+//                    $item->link = site_url('language/set/'. ($language==CT_LANG_INDONESIA?CT_LANG_ENGLISH:CT_LANG_INDONESIA));
+//                    break;
+//                case 'top_menu_contactus':
+//                    $item->link = '';break;
+//                case 'top_menu_faq':
+//                    $item->link = '';break;
+//            }
+//            $top_menu[] = $item;
+//        }
+//        
+//        return $top_menu;
+//    }
     
     function get_dropdox($language=CT_LANG_INDONESIA){
         $result = array();

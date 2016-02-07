@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Description of Migration_add_groups
+ * Description of Migration_add_group_privileges
  *
  * @author marwansaleh
  */
-class Migration_add_privileges extends CI_Migration {
-    private $_table_name = 'privileges';
+class Migration_add_group_privileges extends CI_Migration {
+    private $_table_name = 'group_privileges';
     private $_primary_key = 'id';
     private $_index_keys = array();
     private $_attributes = array('ENGINE' => 'InnoDB');
@@ -83,5 +83,5 @@ class Migration_add_privileges extends CI_Migration {
 
 /*
  * filename : 009_add_privileges.php
- * location : /application/migrations/009_add_privileges.php
+ * location : /application/migrations/009_add_group_privileges.php
  */

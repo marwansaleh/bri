@@ -12,6 +12,7 @@ class Menu extends REST_Api {
         'caption_id'    => 'caption_id',
         'caption_en'    => 'caption_en',
         'caption'       => 'caption',
+        'name'          => 'name',
         'title_id'      => 'title_id',
         'title_en'      => 'title_en',
         'title'         => 'title',
@@ -94,6 +95,7 @@ class Menu extends REST_Api {
         $parent_id = $this->post('parent_id');
         $caption_id = $this->post('caption_id');
         $caption_en = $this->post('caption_en');
+        $name = $this->post('name');
         $title_id = $this->post('title_id');
         $title_en = $this->post('title_en');
         $href = $this->post('href');
@@ -104,6 +106,7 @@ class Menu extends REST_Api {
             'parent_id'     => $parent_id,
             'caption_id'    => $caption_id,
             'caption_en'    => $caption_en,
+            'name'          => $name,
             'title_id'      => $title_id,
             'title_en'      => $title_en,
             'href'          => $href,
@@ -122,7 +125,7 @@ class Menu extends REST_Api {
     
     function index_put($id){
         $data = $this->array_from_post(
-                array('parent_id', 'caption_id', 'caption_en', 'title_id', 'title_en', 'href', 'category', 'sort'),
+                array('parent_id', 'caption_id', 'caption_en', 'name', 'title_id', 'title_en', 'href', 'category', 'sort'),
                 $this->put(), TRUE
         );
         
@@ -151,7 +154,7 @@ class Menu extends REST_Api {
             $item->title = $lang == CT_LANG_INDONESIA ? $item->title_id : $item->title_en;
             $item->created_dt = date('Y-m-d H:i:s', $item->created);
             $item->modified_dt = date('Y-m-d H:i:s', $item->modified);
-            $item->category_name = $item->category == CT_MAINMENU_CORPORATE ? 'Corporate' : 'Home';
+            $item->category_name = $item->category ? menu_category_name($item->category) : 'Other';
         }
         
         return $item;

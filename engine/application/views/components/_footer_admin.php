@@ -6,9 +6,7 @@
                   radioClass: 'iradio_minimal-blue'
                 });
                 //pretty photo
-                $("a[rel^='prettyPhoto']").prettyPhoto({
-                    social_tools:''
-                });
+                $("a[rel^='prettyPhoto']").prettyPhoto({});
                 //nice scroll
                 $('html').niceScroll({cursorcolor:"#00F"});
                 $('.nicescroll').niceScroll({cursorcolor:"#00F"});

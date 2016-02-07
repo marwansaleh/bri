@@ -171,8 +171,8 @@ $ext = array_merge($ext_img, $ext_file, $ext_misc, $ext_video,$ext_music); //all
  * AVIARY config
 *******************/
 $aviary_active 	= TRUE;
-$aviary_key 	= "dvh8qudbp6yx2bnp";
-$aviary_secret	= "m6xaym5q42rpw433";
+$aviary_key 	= "3d966dd2b60c48ffbfd8dccc082e0ca1";
+$aviary_secret	= "463e3de8-cda5-4376-b7ba-2196e9f21aaa";
 $aviary_version	= 3;
 $aviary_language= 'en';
 

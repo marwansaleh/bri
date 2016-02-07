@@ -97,6 +97,7 @@ define('CT_LOG_TYPE_DUAL', 'dual');
 //CONSTANT MAINMENU TYPE
 define('CT_MAINMENU_HOME', 0);
 define('CT_MAINMENU_CORPORATE', 1);
+define('CT_MAINMENU_TOP', 2);
 
 //constant language
 define('CT_LANG_INDONESIA', 'indonesia');

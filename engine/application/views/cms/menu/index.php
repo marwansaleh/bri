@@ -18,6 +18,7 @@
                                         <option value="-1">-- All Categories--</option>
                                         <option value="<?php echo CT_MAINMENU_HOME; ?>">HOME</option>
                                         <option value="<?php echo CT_MAINMENU_CORPORATE; ?>">CORPORATE</option>
+                                        <option value="<?php echo CT_MAINMENU_TOP; ?>">TOP MENU</option>
                                     </select>
                                 </div>
                             </div>
@@ -53,7 +54,7 @@
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>Caption</th>
-                            <th>Title</th>
+                            <th>Name</th>
                             <th>Href</th>
                             <th>Category</th>
                             <th>Created</th>
@@ -126,7 +127,7 @@
                         var s = '<tr id="'+data.items[i].id+'" data-id="'+data.items[i].id+'">';
                             s+= '<td>'+_this._getRecNumber(i)+'.</td>';
                             s+= '<td>'+data.items[i].caption+'</td>';
-                            s+= '<td>'+data.items[i].title+'</td>';
+                            s+= '<td>'+data.items[i].name+'</td>';
                             s+= '<td>'+data.items[i].href+'</td>';
                             s+= '<td>'+data.items[i].category_name+'</td>';
                             s+= '<td>'+data.items[i].created_dt+'</td>';

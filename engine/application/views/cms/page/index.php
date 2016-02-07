@@ -131,6 +131,7 @@
                             
                             s+= '<td class="text-center">';
                                 s+= '<a class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit" href="'+(_this._getCMSUrl('page/edit/'+data.items[i].id+'/'+_this.page))+'"><i class="fa fa-pencil-square"></i></a>';
+                                s+= '<a class="btn btn-xs btn-primary" data-toggle="tooltip" title="Open in browser" href="'+(_this._getUrl(data.items[i].link))+'" target="blank"><i class="fa fa-eye"></i></a>';
                                 s+= '<a class="btn btn-xs btn-danger confirmation" data-toggle="tooltip" title="Delete" onclick="deleteItem('+data.items[i].id+');"><i class="fa fa-minus-square"></i></a>';
                             s+= '</td>';
                         s+= '</tr>';

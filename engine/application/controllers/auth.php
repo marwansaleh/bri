@@ -30,7 +30,7 @@ class Auth extends MY_FrontController{
         //get previous submitted data if any
         $this->data['submitted'] = $this->session->flashdata('submitted');
         //set submit form action url
-        $this->data['submit'] = site_url(config_item('cms_path') . 'auth/login');
+        $this->data['submit'] = site_url('auth/login');
         $this->data['subview'] = 'auth/login';
         $this->load->view('_layout_login', $this->data);
     }
@@ -62,13 +62,13 @@ class Auth extends MY_FrontController{
             }
         }
         
-        redirect(config_item('cms_path') . 'auth/index');
+        redirect(site_url('auth/index'));
     }
     
     function logout(){
         $this->session->sess_destroy();
         
-        redirect(get_cms_url('auth'));
+        redirect(site_url('auth'));
     }
     
     private function _create_captcha(){
@@ -162,5 +162,5 @@ class Auth extends MY_FrontController{
 
 /**
  * Filename : auth.php
- * Location : application/controllers/cms/auth.php
+ * Location : application/controllers/auth.php
  */
